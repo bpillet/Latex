@@ -1,0 +1,152 @@
+%CONSEILS DE SAN POUR LE COPIER-COLLER
+%\usepackage{cmlgc}
+\usepackage{ucs}
+%\usepackage[utf8x]{inputenc}
+%\usepackage[T1]{fontenc}
+%GEOMETRY
+\usepackage{geometry}
+%\geometry{a4paper, hmargin=50pt, vmargin=75pt} % Régler les marges horizontales et verticales.
+%LANGUAGE
+\usepackage[english,francais]{babel}
+%SYMBOLS
+\usepackage{bm,amsmath,amssymb,amsthm}
+%HEADINGS
+%\pagestyle{headings} % Pour avoir des entêtes rappelant le titre de la section en cours sur chaque page.
+%THEOREMS
+\usepackage{thmbox} % Met les théorèmes dans des boites
+%GRAPHICS
+\usepackage{graphicx} % Permet de mettre des images
+%ENUMERATE
+\usepackage{enumerate} % Permet de faire des énumérations genre (i), (ii), (iii).
+%INDEX
+\usepackage{makeidx} % Permet de construire un index sémantique (comme à la fin des livres) trop la classe !
+%COULEURS PERSOS
+\usepackage{color}
+%GESTION EPS
+\usepackage{psfrag} % Aucune idée de ce à quoi ça sert.
+%FLECHES, SYMBOLES, GRAPHES, AUTOMATES
+\usepackage{tikz} % ajoute des symboles de flèches et autres.
+\usetikzlibrary{matrix,arrows,automata} % Permet de constuire des graphes.
+%ALGORITHMES
+\usepackage[ruled,vlined,french]{algorithm2e} % Permet d'écrire des algos.
+
+%% DIVERS
+%\usepackage{multido}
+%\usepackage{showlabels}
+
+%LINKS
+\usepackage{hyperref} % toujours le mettre en dernier !
+\hypersetup{ colorlinks = true, linkcolor = black, urlcolor = blue, citecolor = blue }
+
+%MATHBB
+\newcommand\N{\mathbb{N}} % Entiers naturels
+\newcommand\Z{\mathbb{Z}} % Entiers relatifs
+\newcommand\Q{\mathbb{Q}} % Rationnels
+\newcommand\R{\mathbb{R}} % Réels
+\newcommand\C{\mathbb{C}} % Complexes
+\newcommand\Ha{\mathbb{H}} % Quaternions (Ha__milton)
+\newcommand\K{\mathbb{K}} % Corps quelconque
+\newcommand\E{\mathbb{E}} % Espérance
+\newcommand\F{\mathbb{F}} % Corps fini
+\newcommand\Pro{\mathbb{P}} %  Proba
+\newcommand\B{\mathbb{B}} % aucune idée
+\newcommand\T{\mathbb{T}} % Tore
+%\newcommand\S{\mathbb{S}}
+\def\S{\mathbb{S}} % Sphère
+%\newcommand\k{\mathbb{k}}
+
+%MATHCAL
+\newcommand\Oo{\mathcal{O}}
+\newcommand\Uu{\mathcal{U}}
+\newcommand\Gg{\mathcal{G}}
+\newcommand\Ll{\mathcal{L}} % Applications linéaires 
+\newcommand\Cc{\mathcal{C}} % Fonctions continues
+\newcommand\Pp{\mathcal{P}} % Parties d'un ensemble
+\newcommand\Ff{\mathcal{F}} % Tribu / Ensemble des fonctions …
+\newcommand\Bb{\mathcal{B}} % Boréliens
+\newcommand\Aa{\mathcal{A}} % Tribu
+\newcommand\Mm{\mathcal{M}} % Matrices
+\newcommand\Nn{\mathcal{N}} % …
+\newcommand\Tt{\mathcal{T}} % Topologie
+\newcommand\Hh{\mathcal{H}} % Espace de Hilbert
+
+\newcommand\Gl{\mathcal{G}\ell} % Gl_n (K)
+
+%MATHFRAC
+\DeclareMathOperator\Sf{\mathfrak{S}} % Groupe symétrique
+\DeclareMathOperator\Al{\mathfrak{A}} % Groupe alterné
+
+%Category theory
+%\DeclareMathOperator\domain{\text{domain}}
+%\DeclareMathOperator\codom{\text{codomain}}
+%\DeclareMathOperator\CC{\textbf{C}}
+%\def\Hom{\text{Hom}}
+%\DeclareMathOperator\0{\textbf{0}}
+%\def\1{\textbf{1}}
+%\DeclareMathOperator\2{\textbf{2}}
+%\DeclareMathOperator\3{\textbf{3}}
+%\DeclareMathOperator\Cat{\textbf{Cat}}
+
+\DeclareMathOperator{\dd}{d\!} 	% d d'intégration comme dans dµ ou dt
+
+\DeclareMathOperator{\demi}{\frac{1}{2}} % fraction 1/2
+
+\DeclareMathOperator{\Vv}{| \! | \! |} % Norme subordonnée ||| A |||
+
+\DeclareMathOperator{\sh}{sh} % sinus hyperbolique
+
+\DeclareMathOperator{\Div}{div} % divergence
+
+\DeclareMathOperator{\image}{Im} % Image
+
+\DeclareMathOperator{\trans}{^\textbf{t}\!\!} %Tranposée à gauche
+
+% Interval d'entiers ou interprétation d'un terme en logique.
+\DeclareMathOperator{\llbracket}{[\![}
+\DeclareMathOperator{\rrbracket}{]\!]}
+
+\newcommand\name[2]{{#1}\textsc{ {#2}}} % utilisation : \name{Stefàn}{Banach}
+
+\newcommand\ens[2]{\left\lbrace {#1} \; \left| \; {#2} \right. \right\rbrace } % utilisation : \ens{(x,y) \in \R^2}{x^2 + y^2 = 1}
+
+\newcommand\Hom{\text{Hom}} % Hom-set
+
+\newcommand\End{\text{End}} % Endomorphismes
+
+\newcommand\ssi{\; \textbf{ssi} \;} % ssi
+
+\newcommand\NLd[1]{\left\Vert {#1} \right\Vert_{L^2}} % Norme 2 : \NLd{f} = || f ||_2
+
+\newcommand\dpp[2]{\dfrac{\partial{#1}}{\partial{#2}}} %\dpp{f}{x} = df/dx
+
+\newcommand\quot[1]{\Z/{#1}\Z} % \quot{n} = Z/nZ
+
+\newcommand\1[1]{\mathbf{1}_{\{#1\}}} % Fonction indicatrice
+\newcommand\carac[1]{\mathbf{1}_{#1}} % Fonction indicatrice 2
+
+\newcommand\Card{\text{Card}} % Cardinal
+
+%\newcommand\Legendre[2]{\left(\begin{array}{c}{#1} \\ {#2}\end{array}\right)}
+\newcommand\Legendre[2]{\left(\dfrac{{#1}}{{#2}}\right)}  % Symbole de Legendre et Jacobi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{DarkRed}{rgb}{0.55,0,0.1} 
+\definecolor{DarkBlue}{rgb}{0.1,0,0.55}  
+\definecolor{DarkGreen}{rgb}{0,0.55,0.1} 
+%Pour utiliser sur le texte "banane" écrire {\color{DarkRed} banane}
+%... peut s'utiliser sur de larges parties du texte.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem[M]{lem}{Lemme}
+\newtheorem[S]{exemple}{Exemple}
+\newtheorem[S]{exo}{Exercice}
+\newtheorem[S]{rem}{Remarque}
+\newtheorem[M,cut=false]{thm}{Théorème}
+
+\theoremstyle{definition}
+\newtheorem[M,cut=false]{defi}{Définition}
+\newtheorem[S,cut=false]{prop}{Proposition}
+\newtheorem[S]{cor}{Corollaire}
+\newtheorem[S,cut=false, headstyle=\bfseries\boldmath{Exercise},bodystyle=\noindent]{Eno}{}
