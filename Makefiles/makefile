@@ -7,7 +7,7 @@ RERUN = 'There were undefined references'
 BIBLI = 'bibliography'
 SRC = $(wildcard *.tex)
 IMG = $(SRC:.tex=.pdf)
-URL = http://perso.univ-rennes1.fr/basile.pillet/LaTeX/
+URL = https://raw.githubusercontent.com/bpillet/Latex/master/Headfiles/
 ONLINE = wget -bN $(URL)dipneuste.sty $(URL)amsdip.sty
 
 .SUFFIXE:
