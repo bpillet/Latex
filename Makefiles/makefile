@@ -1,5 +1,5 @@
-LATEX = latex -interaction=nonstopmode
-PDFLATEX = pdflatex -synctex=1 -interaction=nonstopmode
+LATEX = xelatex -no-pdf -interaction=nonstopmode
+PDFLATEX = xelatex -synctex=1 -interaction=nonstopmode
 BIBTEX = bibtex -terse
 MAKEINDEX = wget $(URL)index.ist ; makeindex -s index.ist
 INDEXES = $(wildcard cat .makeinfo_indexes 2> /dev/null)
