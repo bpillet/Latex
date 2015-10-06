@@ -45,8 +45,26 @@ citecolor = blue}
 \newif\if@couleur\@couleurfalse%
 \newif\if@draft\@draftfalse%
 \newif\if@minimal\@minimalfalse%
+\newif\if@onscreen\@onscreenfalse%
+\newif\if@onscreensagemath\@onscreensagemathfalse%
+\newif\if@print\@printfalse%
 
 \DeclareOption{ct}{\@categorytrue}
+\DeclareOption{print}{%
+	\@printtrue%
+	\@onscreenfalse%
+	\@onscreensagemathfalse%
+}
+\DeclareOption{sagemath}{%
+	\@printfalse%
+	\@onscreenfalse%
+	\@onscreensagemathtrue%
+}
+\DeclareOption{onscreen}{%
+	\@printfalse%
+	\@onscreentrue%
+	\@onscreensagemathfalse%
+}
 \DeclareOption{thm}{\@thmtrue}
 \DeclareOption{couleur}{\@couleurtrue}
 \DeclareOption{draft}{\@drafttrue}
@@ -216,7 +234,27 @@ citecolor = blue}
 			\node[circle, draw, scale=3, fill=red, opacity=0.3, color=DarkBlue] {\bf !};%
 		\end{tikzpicture}%
 	}
-	\geometry{a4paper, hmargin=60pt, vmargin=75pt}
+\fi
+
+%ONSCREEN
+%%SageMath
+\if@onscreensagemath
+\geometry{papersize={150mm,243mm},left=2em,right=2em,top=3em,bottom=3em}
+\usepackage[charter]{mathdesign}
+%\usepackage[normalmargins]{savetrees}
+\sloppy
+\pagestyle{empty}
+\fi
+%%Simple
+\if@onscreen
+\geometry{papersize={280mm,175mm},left=2em,right=2em,top=3em,bottom=3em}
+\usepackage[charter]{mathdesign}
+%\usepackage[normalmargins]{savetrees}
+\sloppy
+\pagestyle{empty}
+\fi
+%PRINT
+\if@print
 \fi
 
 
