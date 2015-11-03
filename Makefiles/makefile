@@ -8,7 +8,7 @@ BIBLI = 'bibliography'
 SRC = $(wildcard *.tex)
 IMG = $(SRC:.tex=.pdf)
 URL = https://raw.githubusercontent.com/bpillet/Latex/master/Headfiles/
-ONLINE = wget -qN $(URL)dipneuste.sty $(URL)amsdip.sty $(URL)teaching.sty
+ONLINE = wget -qN $(URL)dipneuste.sty $(URL)amsdip.sty $(URL)Teaching/teaching.sty $(URL)Teaching/logo_rennes1.pdf
 
 .SUFFIXE:
 
