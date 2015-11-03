@@ -195,6 +195,7 @@ citecolor = blue}
 \renewcommand\thesection{\hfill\Roman{section}.}%
 \renewcommand\thesubsection{\arabic{subsection}}%
 
+%Exemple \dochead{licence1}{VAR}{TD 3}
 \newcommand*{\dochead}[3]{%
 	\noindent\makebox[\textwidth]{\tiny #1\hspace{\fill}\the\year}\par%
 	\noindent\makebox[\textwidth]{%
@@ -208,6 +209,47 @@ citecolor = blue}
 		}%
 	}%
 }
+
+%Exemple \interrohead{Une heure}
+\newcommand*{\interrohead}[1]{%
+	\vspace*{2em}%
+	\vbox{%
+		\hrule%
+		\vspace*{3pt}%
+		\begin{raggedright}%
+			\emph{\small Documents, notes de cours ou de TD, téléphones portables, 
+			calculatrices sont interdits. Justifiez toutes vos réponses.}\\%
+			\smallskip%
+			Dur\'ee : {#1}\\%
+			\smallskip%
+		\end{raggedright}%
+		\vspace*{3pt}%
+		\hrule%
+	}%
+	\vspace*{2em}%
+	}
+
+%Exemple \interroheadonsheat{Une heure}
+\newcommand*{\interroheadonsheat}[1]{%
+	\vspace*{2em}%
+	\vbox{%
+		\hrule%
+		\vspace*{3pt}%
+		\begin{raggedright}%
+			\emph{\small Documents, notes de cours ou de TD, téléphones portables, 
+			calculatrices sont interdits. Justifiez toutes vos réponses.}\\%
+			\smallskip%
+			Dur\'ee : {#1}\\%
+			\smallskip%
+			\textbf{NOM :}\\%
+			\textbf{PRÉNOM :}\\%
+			\smallskip%
+		\end{raggedright}%
+		\vspace*{3pt}%
+		\hrule%
+	}%
+	\vspace*{2em}%
+	}
 
 %% Fin du package
 
