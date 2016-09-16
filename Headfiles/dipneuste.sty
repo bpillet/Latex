@@ -121,7 +121,8 @@ citecolor = blue}
 \DeclareMathOperator{\dd}{d\!} 	% d d'intégration comme dans dµ ou dt
 \if@minimal\else
 \DeclareMathOperator{\dbarre}{\bar{\partial}}%
-\DeclareMathOperator{\ddbarre}{\partial\!\!\bar{\partial}}%
+\DeclareMathOperator{\ddbarre}{\partial\!\bar{\partial}}%
+%\DeclareMathOperator{\ddbarre}{\partial\!\!\bar{\partial}}%
 \newcommand\dpp[2]{\dfrac{\partial{#1}}{\partial{#2}}} %\dpp{f}{x} = df/dx
 \newcommand\dppp[3]{\dfrac{\partial^2{#1}}{\partial{#2}\partial{#3}}} %\dppp{f}{x}{y} = df/(dxdy)
 \newcommand\dpppp[4]{\dfrac{\partial^3{#1}}{\partial{#2}\partial{#3}\partial{#4}}} %\dppp{f}{x}{y}{z} = df/(dxdydz)
