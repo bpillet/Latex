@@ -42,11 +42,13 @@ citecolor = blue}
 %% Déclaration des booléens et des options
 \newif\if@draft\@draftfalse%
 \newif\if@prof\@proffalse%
+\newif\if@twocol\@twocolfalse%
 
 \DeclareOption{draft}{\@drafttrue}
 \DeclareOption{prof}{\@proftrue}
 \DeclareOption{corrige}{\@proftrue}
 \DeclareOption{eleve}{\@proffalse}
+\DeclareOption{twocolumn}{\@twocoltrue}
 
 \DeclareOption*{%
 \PackageWarning{CollesW}{Option inconnue : ‘\CurrentOption’}%
@@ -179,7 +181,18 @@ citecolor = blue}
 	\geometry{a4paper, hmargin=60pt, vmargin=75pt}
 \fi
 
-\def\exercice#1{%
+
+\newlength\mdat%
+\newlength\wdth%
+\if@twocol
+  \setlength{\mdat}{2.8em} % largeur de la boite de données
+  \setlength{\wdth}{.78\linewidth} % proportion de la ligne utilisée par l'exo
+\else
+  \setlength{\mdat}{4em} % largeur de la boite de données
+  \setlength{\wdth}{.7\linewidth} % proportion de la ligne utilisée par l'exo
+\fi
+
+\def\exercice{%
   \ifhmode\par\fi
   \removelastskip
   \vskip 2ex\goodbreak
@@ -187,7 +200,7 @@ citecolor = blue}
   \begingroup
   \noindent
   \leavevmode\large\bfseries\raggedright
-  Exercice \thesubsection\ifx$#1$\else~: #1\fi\par\nobreak
+  Exercice \thesubsection~: \par\nobreak
   \vskip -1ex\nobreak
   \endgroup
   \noindent\hrulefill\nobreak
@@ -210,10 +223,10 @@ citecolor = blue}
 \newenvironment{exo}{%
   \bigskip
   \refstepcounter{exo}%
-  \parbox{4em}{%
+  \parbox{\mdat}{%
     \classe \\ \@date\\%
     (\textbf{\numerocolle}.\Alph{exo})}\qquad%
-  \begin{minipage}{.8\textwidth}}{%
+  \begin{minipage}{\wdth}}{%
   \end{minipage}%
   \bigskip%
   \hrule%
@@ -224,11 +237,11 @@ citecolor = blue}
 }
 \specialcomment{correction}{%
   \smallskip%
-  \parbox{4em}{%
+  \parbox{\mdat}{%
     Corr. \\ \@date\\%
     (\textbf{\numerocolle}.\Alph{exo})}%
   \hfill%
-  \begin{minipage}{.8\textwidth}%    
+  \begin{minipage}{\wdth}%    
     \color{DarkRed}%
     \textbf{Correction}\par%
     \medskip%
@@ -249,10 +262,10 @@ citecolor = blue}
 \newenvironment{qcours}{%
   \bigskip%
   \refstepcounter{cours}%
-  \parbox{4em}{%
+  \parbox{\mdat}{%
    \classe \\ \@date\\%
     (\textbf{\numerocolle}.\textit{\roman{cours}})}\qquad%
-  \begin{minipage}{.8\textwidth}%
+  \begin{minipage}{\wdth}%
     \textbf{Question de cours}\par%
     \medskip}{%
   \end{minipage}%
