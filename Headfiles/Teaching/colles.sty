@@ -28,7 +28,8 @@
 \usetikzlibrary{matrix,arrows,automata} % Permet de constuire des graphes.
 %ALGORITHMES
 \RequirePackage[ruled,vlined,french]{algorithm2e} % Permet d'écrire des algos.
-
+%HEADINGS
+\RequirePackage{everypage}
 %LINKS
 \RequirePackage{hyperref} % toujours le mettre en dernier !
 \hypersetup{%
@@ -255,8 +256,20 @@ citecolor = blue}
 
 \if@prof%
 %\includecomment{correction}%
+\AddEverypageHook{%
+  \begin{tikzpicture}[remember picture,overlay]%
+    \node[rotate=0,scale=15,text opacity=0.1]%
+    at (current page.center) [rotate = 30] {((Prof))};%
+  \end{tikzpicture}%
+  }%
+  %% \AtBeginPage{%
+  %%   \begin{tikzpicture}[remember picture,overlay]%
+  %%     \node[rotate=0,scale=15,text opacity=0.1]%
+  %%     at (current page.center) {((Prof))};%
+  %%   \end{tikzpicture}%
+  %% }%
 \else%
-\excludecomment{correction}%
+  \excludecomment{correction}%
 \fi%
 
 \newenvironment{qcours}{%
@@ -272,6 +285,8 @@ citecolor = blue}
   \bigskip%
   \hrule%
 }
+
+
 
 \geometry{a4paper, hmargin=2em, vmargin=3em}
 
