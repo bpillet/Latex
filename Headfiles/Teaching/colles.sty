@@ -50,6 +50,7 @@ citecolor = blue}
 \DeclareOption{corrige}{\@proftrue}
 \DeclareOption{eleve}{\@proffalse}
 \DeclareOption{twocolumn}{\@twocoltrue}
+\DeclareOption{couleur}{}
 
 \DeclareOption*{%
 \PackageWarning{CollesW}{Option inconnue : ‘\CurrentOption’}%
@@ -241,7 +242,7 @@ citecolor = blue}
   \parbox{\mdat}{%
     Corr. \\ \@date\\%
     (\textbf{\numerocolle}.\Alph{exo})}%
-  \hfill%
+  \quad%
   \begin{minipage}{\wdth}%    
     \color{DarkRed}%
     \textbf{Correction}\par%
@@ -258,8 +259,8 @@ citecolor = blue}
 %\includecomment{correction}%
 \AddEverypageHook{%
   \begin{tikzpicture}[remember picture,overlay]%
-    \node[rotate=0,scale=15,text opacity=0.1]%
-    at (current page.center) [rotate = 30] {((Prof))};%
+    \node[rotate=0,scale=15]%
+    at (current page.center) [rotate = 30, text opacity=.1] {((Prof))};%
   \end{tikzpicture}%
   }%
   %% \AtBeginPage{%
