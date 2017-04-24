@@ -85,38 +85,41 @@ citecolor = blue}
 
 %% Définition des commandes
 %MATHBB
-\newcommand\N{\mathbb{N}} % Entiers naturels
-\newcommand\Z{\mathbb{Z}} % Entiers relatifs
-\newcommand\Q{\mathbb{Q}} % Rationnels
-\newcommand\R{\mathbb{R}} % Réels
-\newcommand\C{\mathbb{C}} % Complexes
-\newcommand\Ha{\mathbb{H}} % Quaternions (Ha__milton)
-\newcommand\K{\mathbb{K}} % Corps quelconque
-\newcommand\E{\mathbb{E}} % Espérance
-\newcommand\F{\mathbb{F}} % Corps fini
-\newcommand\Pro{\mathbb{P}} %  Proba
-\newcommand\B{\mathbb{B}} % aucune idée
-\newcommand\T{\mathbb{T}} % Tore
+\DeclareMathOperator\N{\mathbb{N}} % Entiers naturels
+\DeclareMathOperator\Z{\mathbb{Z}} % Entiers relatifs
+\DeclareMathOperator\Q{\mathbb{Q}} % Rationnels
+\DeclareMathOperator\R{\mathbb{R}} % Réels
+\DeclareMathOperator\C{\mathbb{C}} % Complexes
+\DeclareMathOperator\Ha{\mathbb{H}} % Quaternions (Ha__milton)
+\DeclareMathOperator\K{\mathbb{K}} % Corps quelconque
+\DeclareMathOperator\E{\mathbb{E}} % Espérance
+\DeclareMathOperator\F{\mathbb{F}} % Corps fini
+\DeclareMathOperator\Pro{\mathbb{P}} %  Proba
+\DeclareMathOperator\B{\mathbb{B}} % aucune idée
+\DeclareMathOperator\T{\mathbb{T}} % Tore
 \def\S{\mathbb{S}} % Sphère
 
 %MATHCAL
-\newcommand\Oo{\mathcal{O}}
-\newcommand\Uu{\mathcal{U}}
-\newcommand\Gg{\mathcal{G}}
-\newcommand\Ll{\mathcal{L}} % Applications linéaires 
-\newcommand\Cc{\mathcal{C}} % Fonctions continues
-\newcommand\Pp{\mathcal{P}} % Parties d'un ensemble
-\newcommand\Rr{\mathcal{R}} % Relation d'équivalence
-\newcommand\Ff{\mathcal{F}} % Tribu / Ensemble des fonctions …
-\newcommand\Bb{\mathcal{B}} % Boréliens
-\newcommand\Aa{\mathcal{A}} % Tribu
-\newcommand\Mm{\mathcal{M}} % Matrices
-\newcommand\Nn{\mathcal{N}} % …
-\newcommand\Tt{\mathcal{T}} % Topologie
-\newcommand\Hh{\mathcal{H}} % Espace de Hilbert
-\newcommand\Ee{\mathcal{E}} % Espace total d'un fibré
+\DeclareMathOperator\Aa{\mathcal{A}} % Tribu
+\DeclareMathOperator\Bb{\mathcal{B}} % Boréliens
+\DeclareMathOperator\Cc{\mathcal{C}} % Fonctions continues
+\DeclareMathOperator\Dd{\mathcal{D}}
+\DeclareMathOperator\Ee{\mathcal{E}} % Fonctions lisses
+\DeclareMathOperator\Ff{\mathcal{F}} % Faisceau générique
+\DeclareMathOperator\Gg{\mathcal{G}} % ...
+\DeclareMathOperator\Hh{\mathcal{H}} % Espace de Hilbert
+\DeclareMathOperator\Ii{\mathcal{I}} % Idéal
+\DeclareMathOperator\Jj{\mathcal{J}} % ...
+\DeclareMathOperator\Ll{\mathcal{L}} % Applications linéaires 
+\DeclareMathOperator\Mm{\mathcal{M}} % Matrices
+\DeclareMathOperator\Nn{\mathcal{N}} % 
+\DeclareMathOperator\Oo{\mathcal{O}} %
+\DeclareMathOperator\Pp{\mathcal{P}} % Parties d'un ensemble
+\DeclareMathOperator\Rr{\mathcal{R}} % Relation d'équivalence
+\DeclareMathOperator\Tt{\mathcal{T}} % Topologie
+\DeclareMathOperator\Uu{\mathcal{U}}
 
-\newcommand\Gl{\mathcal{G}\ell} % Gl_n (K)
+\DeclareMathOperator\Gl{\mathcal{G}\ell} % Gl_n (K)
 
 %MATHFRAC
 \DeclareMathOperator\Sf{\mathfrak{S}} % Groupe symétrique
