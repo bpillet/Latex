@@ -33,8 +33,7 @@
 %COULEURS PERSOS
 \RequirePackage{color}
 %FLECHES, SYMBOLES, GRAPHES, AUTOMATES
-\RequirePackage{tikz} % ajoute des symboles de flèches et autres.
-\RequirePackage{pgfplots} % plots
+\RequirePackage{pgf,tikz,pgfplots} % ajoute des symboles de flèches et autres.
 \usetikzlibrary{matrix,arrows,automata} % Permet de constuire des graphes.
 %ALGORITHMES
 \RequirePackage[ruled,vlined,french]{algorithm2e} % Permet d'écrire des algos.
@@ -165,6 +164,8 @@ citecolor = blue}
 
 \newcommand\ens[2]{\left\lbrace {#1} \; \left| \; {#2} \right. \right\rbrace } 
 % utilisation : \ens{(x,y) \in \R^2}{x^2 + y^2 = 1}
+
+\newcommand\dessous[2]{\underset{{#1}}{\underbrace{{#2}}}}
 
 \DeclareMathOperator{\image}{Im} % Image
 \newcommand\End{\text{End}} % Endomorphismes
