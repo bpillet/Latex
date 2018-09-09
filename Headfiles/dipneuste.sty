@@ -4,8 +4,8 @@
 
 %% Chargement des extensions
 % CARACTERES
-\RequirePackage[utf8x]{inputenc}
 \RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
 \RequirePackage{ucs}
 % SOULIGNEMENT
 \RequirePackage[normalem]{ulem}
@@ -13,14 +13,23 @@
 \RequirePackage{geometry}%\geometry{a4paper, hmargin=50pt, vmargin=75pt} % Régler les marges horizontales et verticales.
 % LANGUAGE
 \RequirePackage[english,francais]{babel}
-% SYMBOLS
+% SYMBOLS, FONTS
 \RequirePackage{bm,amsmath,amssymb,amsthm}
+\RequirePackage{fontawesome}
+% TYPOGRAPHY
+\RequirePackage{microtype}
 % GRAPHICS
 \RequirePackage{graphicx} % Permet de mettre des images
 % THEOREMS
 \RequirePackage{thmbox} % Met les théorèmes dans des boites
 % ENUMERATE
 \RequirePackage{enumerate} % Permet de faire des énumérations genre (i), (ii), (iii).
+% WRAPFIG
+\RequirePackage{wrapfig}
+% SOULIGNAGE
+\RequirePackage[normalem]{ulem}
+% EUROS ET SYMBOLES
+\RequirePackage{textcomp, eurosym}
 % INDEX
 \RequirePackage{makeidx} % Permet de construire un index sémantique (comme à la fin des livres) trop la classe !
 % COULEURS PERSOS
@@ -72,6 +81,8 @@ citecolor = blue}
 
 %% Définition des commandes
 %MATHBB
+
+\DeclareMathOperator\D{\mathbb{D}} % Décimaux
 \DeclareMathOperator\N{\mathbb{N}} % Entiers naturels
 \DeclareMathOperator\Z{\mathbb{Z}} % Entiers relatifs
 \DeclareMathOperator\Q{\mathbb{Q}} % Rationnels
@@ -102,7 +113,7 @@ citecolor = blue}
 \DeclareMathOperator\Nn{\mathcal{N}} % 
 \DeclareMathOperator\Oo{\mathcal{O}} %
 \DeclareMathOperator\Pp{\mathcal{P}} % Parties d'un ensemble
-\DeclareMathOperator\Qq{\mathcal{Q}} % 
+\DeclareMathOperator\Qq{\mathcal{Q}} % Proposition
 \DeclareMathOperator\Rr{\mathcal{R}} % Relation d'équivalence
 \DeclareMathOperator\Ss{\mathcal{S}} % Système
 \DeclareMathOperator\Tt{\mathcal{T}} % Topologie

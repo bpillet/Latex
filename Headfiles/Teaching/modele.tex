@@ -1,0 +1,53 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,amssymb,fancybox,fancyhdr,lastpage,a4,mdwlist,listings}
+
+\topmargin-0.5cm
+\headheight20pt
+\textheight23cm
+\textwidth17.5cm
+\oddsidemargin-1cm
+\evensidemargin0cm
+\parindent0pt
+
+\def\[{[\![}
+\def\]{]\!]}
+
+\lstloadlanguages{Python}
+\lstset{%
+  language=Python,%
+  basicstyle=\normalfont\ttfamily,
+  stringstyle=\itshape,
+  commentstyle=\itshape,
+  keepspaces=true,
+  framesep=5pt,
+}
+
+\lstnewenvironment{python}[1][0]
+{\lstset{%
+    xleftmargin=1cm,
+    columns=fullflexible,
+    belowskip=0pt,
+    gobble=#1
+}\small}
+{\normalfont}
+
+\begin{document}
+
+\renewcommand{\labelenumi}{\arabic{enumi})}
+\renewcommand{\labelenumii}{\alph{enumii})}
+\renewcommand{\labelenumiii}{\roman{enumiii})}
+
+\pagestyle{fancy}
+\lhead{{\bf MPSI}}
+\chead{} 
+\rhead{}
+\lfoot{\sl Lyc\'ee Chateaubriand}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+
+\renewcommand{\footrulewidth}{0.4pt}
+
+test
+
+\end{document}

@@ -1,0 +1,80 @@
+# -*- org -*-
+# Fichier de configuration de beamer pour LaTeX
+
+# ############
+#   À FAIRE ! ! !
+# ###########
+
+
+
+
+
+#+STARTUP: indent beamer
+
+#+LATEX_CLASS: beamer
+#+LATEX_HEADER: \usepackage[couleur]{/home/basile/Latex/Headfiles/beamer}
+#+LATEX_CLASS_OPTIONS: [francais, 10pt, xcolor=svgnames, presentation, landscape]
+
+# Autres options handout, a4paper, bigger
+
+# +LATEX_HEADER: \setbeamertemplate{note page}[plain]
+# +LATEX_HEADER: \pgfpagesuselayout{4 on 1}[a4paper, landscape, border shrink=5mm]
+
+#+LATEX_HEADER: \setbeamercovered{transparent=9.5}
+
+
+#+EXCLUDE_TAGS: eleve noexport ARCHIVE
+
+#+OPTIONS: H:3 toc:nil num:2 author:nil title:nil
+
+#+SETUPFILE: ~/Documents/Enseignement/listings.setup
+
+** Config eleve
+
+*** Show
+#+LATEX_HEADER: \newcommand{\eleve}[1]{\textbf{#1}}
+
+*** COMMENT Eleve
+
+#+LATEX_CLASS_OPTIONS: [francais, 10pt, xcolor=svgnames, handout]
+#+LATEX_HEADER: \usepackage{pgfpages}
+#+LATEX_HEADER: \pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+#+LATEX_HEADER: \pgfpagesuselayout{4 on 1}[a4paper,border shrink=0mm,landscape]
+#+LATEX_HEADER: \newcommand{\white}[1]{{\textcolor{white}{#1}}}
+#+LATEX_HEADER: \newcommand{\eleve}[1]{\fbox{\phantom{\large #1}}}
+#+LATEX_HEADER: \setbeamercovered{transparent=0}
+#+EXCLUDE_TAGS: show noexport ARCHIVE
+
+#+LATEX_HEADER: \newcommand{\eleve}[1]{\fbox{\phantom{\large #1}}}
+
+
+**** Old eleve                                                   :ARCHIVE:
+# +LATEX_HEADER: \newcommand{\eleve}[1]{\uncover<handout:0>{#1}}
+# +LATEX_HEADER: \newcommand{\eleve}[1]{\bf #1}
+
+
+** Liens et autres configs                                        :noexport:
+[[file:.][Le dossier IPT MPSI]]
+[[file:planning_IPT_2017-2018.org::*Algorithmique][Algorithmique : Planning de C. Picard]]
+file:./TD.org
+
+#+FILETAGS: ENSEIGNEMENT Mpsi1 Mpsi Ipt cours
+#+TAGS: noexport ignore
+
+#+TODO: TODO TOFIDDLE VERIFY | 
+
+
+
+#+BEAMER_THEME: default
+#+LATEX_HEADER: \usecolortheme{spruce}
+#+LATEX_HEADER: \setbeamercolor{math text}{fg=DarkOliveGreen}%
+#+LATEX_HEADER: \setbeamercolor{math text displayed}{fg=DarkOliveGreen}
+
+# +LATEX_HEADER: \setbeamercolor{bibliography entry author}{fg=Red}%
+#+LATEX_HEADER: \setbeamerfont{note page}{family=\rm}%
+
+#+LATEX_HEADER: \usepackage{pgfpages}
+#+LATEX_HEADER: \setbeamertemplate{navigation symbols}{}
+
+
+# +BEAMER_FRAME_LEVEL: 3

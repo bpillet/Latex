@@ -1,6 +1,6 @@
 %% Informations générales
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamer}
+\ProvidesPackage{beamer}[2017]
 
 %% Chargement des extensions
 %CARACTERES
@@ -162,12 +162,12 @@ citecolor = blue}
 \newcommand\carac[1]{\mathbf{1}_{#1}} % Fonction indicatrice 2
 
 %LABEL ITEMS
-\AtBeginDocument{%
-\renewcommand{\labelitemi}{$\bullet$}%
-\renewcommand{\labelitemii}{$\blacktriangleright$}%
-\renewcommand{\labelitemiii}{$\circ$}%
-\renewcommand{\labelitemiv}{$\triangleright$}%
-}
+%% \AtBeginDocument{%
+%% \renewcommand{\labelitemi}{$\bullet$}%
+%% \renewcommand{\labelitemii}{$\blacktriangleright$}%
+%% \renewcommand{\labelitemiii}{$\circ$}%
+%% \renewcommand{\labelitemiv}{$\triangleright$}%
+%% }
 
 % COULEURS
 \if@couleur
