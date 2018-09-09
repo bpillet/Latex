@@ -3,33 +3,35 @@
 \ProvidesPackage{dipneuste}
 
 %% Chargement des extensions
-%CARACTERES
+% CARACTERES
 \RequirePackage[utf8x]{inputenc}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{ucs}
-%GEOMETRY
+% SOULIGNEMENT
+\RequirePackage[normalem]{ulem}
+% GEOMETRY
 \RequirePackage{geometry}%\geometry{a4paper, hmargin=50pt, vmargin=75pt} % Régler les marges horizontales et verticales.
-%LANGUAGE
+% LANGUAGE
 \RequirePackage[english,francais]{babel}
-%SYMBOLS
+% SYMBOLS
 \RequirePackage{bm,amsmath,amssymb,amsthm}
-%GRAPHICS
+% GRAPHICS
 \RequirePackage{graphicx} % Permet de mettre des images
-%THEOREMS
+% THEOREMS
 \RequirePackage{thmbox} % Met les théorèmes dans des boites
-%ENUMERATE
+% ENUMERATE
 \RequirePackage{enumerate} % Permet de faire des énumérations genre (i), (ii), (iii).
-%INDEX
+% INDEX
 \RequirePackage{makeidx} % Permet de construire un index sémantique (comme à la fin des livres) trop la classe !
-%COULEURS PERSOS
+% COULEURS PERSOS
 \RequirePackage{color}
-%FLECHES, SYMBOLES, GRAPHES, AUTOMATES
+% FLECHES, SYMBOLES, GRAPHES, AUTOMATES
 \RequirePackage{pgf,tikz,pgfplots} % ajoute des symboles de flèches et autres.
 \usetikzlibrary{matrix,arrows,automata} % Permet de constuire des graphes.
-%ALGORITHMES
+% ALGORITHMES
 \RequirePackage[ruled,vlined,french]{algorithm2e} % Permet d'écrire des algos.
 
-%LINKS
+% LINKS
 \RequirePackage{hyperref} % toujours le mettre en dernier !
 \hypersetup{%
 colorlinks = true,%
@@ -47,7 +49,10 @@ citecolor = blue}
 \newif\if@minimal\@minimalfalse%
 
 \DeclareOption{ct}{\@categorytrue}
-\DeclareOption{thm}{\@thmtrue}
+\DeclareOption{thm}{
+  \@thmtrue%
+  \@couleurtrue%
+}
 \DeclareOption{couleur}{\@couleurtrue}
 \DeclareOption{draft}{\@drafttrue}
 \DeclareOption{minimal}{%
@@ -97,7 +102,9 @@ citecolor = blue}
 \DeclareMathOperator\Nn{\mathcal{N}} % 
 \DeclareMathOperator\Oo{\mathcal{O}} %
 \DeclareMathOperator\Pp{\mathcal{P}} % Parties d'un ensemble
+\DeclareMathOperator\Qq{\mathcal{Q}} % 
 \DeclareMathOperator\Rr{\mathcal{R}} % Relation d'équivalence
+\DeclareMathOperator\Ss{\mathcal{S}} % Système
 \DeclareMathOperator\Tt{\mathcal{T}} % Topologie
 \DeclareMathOperator\Uu{\mathcal{U}}
 
@@ -193,17 +200,70 @@ citecolor = blue}
 
 %THM
 \if@thm
-	\newtheorem[M]{lem}{Lemme}
+
+% Couleur
+\def\thmbox@color{black}
+\define@key{thmbox}{color}{\def\thmbox@color{#1}}
+\def\thmbox@head#1{%
+  \par\noindent\vbox{%
+    \setbox\thmbox@box@=\hbox{%
+      \vrule width 0mm height 0mm depth \thmbox@vskip%
+      #1}%
+    \copy\thmbox@box@%
+    \ifthmbox@underline%
+       \color@begingroup\color{\thmbox@color}\hrule width \wd\thmbox@box@ height \thmbox@thickness\color@endgroup%
+    \fi}%
+  \hrule height 0mm\relax}
+\def\thmbox@put#1{
+  \vskip\z@%
+  \noindent%
+  \hbox{%
+    {\dimen0=\thmbox@leftmargin%
+     \advance\dimen0-\thmbox@hskip%
+     \advance\dimen0-\thmbox@thickness%
+     \hskip\dimen0}%
+    \color@begingroup\color{\thmbox@color}\vrule width \thmbox@thickness\color@endgroup%
+    \hskip\thmbox@hskip%
+    \box#1%
+    \ifx\thmbox@style L%
+      \hskip\thmbox@hskip%
+      \color@begingroup\color{\thmbox@color}\vrule width \thmbox@thickness\color@endgroup%
+    \fi}%
+  \par\nobreak}
+\def\thmbox@tail{%
+  \hrule height 0mm%
+  \ifx\thmbox@style M%
+    \thmbox@dim=1cm%
+  \else\ifx\thmbox@style L%
+    \thmbox@dim=\hsize%
+    \advance\thmbox@dim-\thmbox@leftmargin%
+    \advance\thmbox@dim-\thmbox@rightmargin%
+    \advance\thmbox@dim2\thmbox@hskip%
+    \advance\thmbox@dim2\thmbox@thickness%
+  \fi\fi%
+  \noindent%
+  {\dimen0=\thmbox@leftmargin%
+   \advance\dimen0-\thmbox@hskip%
+   \advance\dimen0-\thmbox@thickness%
+   \hskip\dimen0}%
+  \color@begingroup\color{\thmbox@color}\vrule width \thmbox@dim height \thmbox@thickness\color@endgroup%
+  \par}
+
+
+
+
+
+	\newtheorem[M, color = DarkRed]{lem}{Lemme}
 	\newtheorem[S]{exemple}{Exemple}
 	\newtheorem[S]{exo}{Exercice}
 	\newtheorem[S]{rem}{Remarque}
-	\newtheorem[M,cut=false]{thm}{Théorème}
+	\newtheorem[M, cut=false, color = DarkRed]{thm}{Théorème}
 
 	\theoremstyle{definition}
-	\newtheorem[M,cut=false]{defi}{Définition}
+	\newtheorem[M,cut=false, color=DarkGreen]{defi}{Définition}
 	\newtheorem[S,cut=false]{prop}{Proposition}
 	\newtheorem[S]{cor}{Corollaire}
-	\newtheorem[S,cut=false, headstyle=\bfseries\boldmath{Exercise},bodystyle=\noindent]{Eno}{}
+	\newtheorem[S,cut=false, headstyle=\bfseries\boldmath{Exercice},bodystyle=\noindent]{Eno}{}
 \fi
 
 %DRAFT
