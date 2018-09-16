@@ -79,21 +79,26 @@ citecolor = blue}
 \def\S{\mathbb{S}} % Sphère
 
 %MATHCAL
-\newcommand\Oo{\mathcal{O}}
-\newcommand\Uu{\mathcal{U}}
-\newcommand\Gg{\mathcal{G}}
-\newcommand\Ll{\mathcal{L}} % Applications linéaires 
-\newcommand\Cc{\mathcal{C}} % Fonctions continues
-\newcommand\Pp{\mathcal{P}} % Parties d'un ensemble
-\newcommand\Rr{\mathcal{R}} % Relation d'équivalence
-\newcommand\Ff{\mathcal{F}} % Tribu / Ensemble des fonctions …
-\newcommand\Bb{\mathcal{B}} % Boréliens
-\newcommand\Aa{\mathcal{A}} % Tribu
-\newcommand\Mm{\mathcal{M}} % Matrices
-\newcommand\Nn{\mathcal{N}} % …
-\newcommand\Tt{\mathcal{T}} % Topologie
-\newcommand\Hh{\mathcal{H}} % Espace de Hilbert
-\newcommand\Ee{\mathcal{E}} % Espace total d'un fibré
+\DeclareMathOperator\Aa{\mathcal{A}} % Tribu
+\DeclareMathOperator\Bb{\mathcal{B}} % Boréliens
+\DeclareMathOperator\Cc{\mathcal{C}} % Fonctions continues
+\DeclareMathOperator\Dd{\mathcal{D}}
+\DeclareMathOperator\Ee{\mathcal{E}} % Fonctions lisses
+\DeclareMathOperator\Ff{\mathcal{F}} % Faisceau générique
+\DeclareMathOperator\Gg{\mathcal{G}} % ...
+\DeclareMathOperator\Hh{\mathcal{H}} % Espace de Hilbert
+\DeclareMathOperator\Ii{\mathcal{I}} % Idéal
+\DeclareMathOperator\Jj{\mathcal{J}} % ...
+\DeclareMathOperator\Ll{\mathcal{L}} % Applications linéaires 
+\DeclareMathOperator\Mm{\mathcal{M}} % Matrices
+\DeclareMathOperator\Nn{\mathcal{N}} % 
+\DeclareMathOperator\Oo{\mathcal{O}} %
+\DeclareMathOperator\Pp{\mathcal{P}} % Parties d'un ensemble
+\DeclareMathOperator\Qq{\mathcal{Q}} % Proposition
+\DeclareMathOperator\Rr{\mathcal{R}} % Relation d'équivalence
+\DeclareMathOperator\Ss{\mathcal{S}} % Système
+\DeclareMathOperator\Tt{\mathcal{T}} % Topologie
+\DeclareMathOperator\Uu{\mathcal{U}}
 
 \newcommand\Gl{\mathcal{G}\ell} % Gl_n (K)
 
@@ -227,7 +232,7 @@ citecolor = blue}
 \newcounter{cours}
 
 \newenvironment{exo}{%
-  \bigskip
+  \bigskip\par\noindent
   \refstepcounter{exo}%
   \parbox{\mdat}{%
     \classe \\ \@date\\%
@@ -278,7 +283,7 @@ citecolor = blue}
 \fi%
 
 \newenvironment{qcours}{%
-  \bigskip%
+  \bigskip\par\noindent%
   \refstepcounter{cours}%
   \parbox{\mdat}{%
    \classe \\ \@date\\%
