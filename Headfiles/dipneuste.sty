@@ -148,7 +148,7 @@ citecolor = blue}
 \newcommand\dpp[2]{\dfrac{\partial{#1}}{\partial{#2}}} %\dpp{f}{x} = df/dx
 \newcommand\dppp[3]{\dfrac{\partial^2{#1}}{\partial{#2}\partial{#3}}} %\dppp{f}{x}{y} = df/(dxdy)
 \newcommand\dpppp[4]{\dfrac{\partial^3{#1}}{\partial{#2}\partial{#3}\partial{#4}}} %\dppp{f}{x}{y}{z} = df/(dxdydz)
-\newcommand\dpppP[4]{\dfrac{\partial^3{#1}}{\partial{#2} {#3} {#4}}} %\dppp{f}{x}{y}{z} = df/(dxyz)
+\newcommand\dpppP[4]{\dfrac{\partial^3{#1}}{\partial{#2} {#3} {#4}}} %\dpppP{f}{x}{y}{z} = df/(dxyz)
 \DeclareMathOperator{\Div}{div} % divergence
 \fi
 
@@ -163,6 +163,7 @@ citecolor = blue}
 \DeclareMathOperator{\sh}{sh} % sinus hyperbolique
 
 \DeclareMathOperator{\Id}{Id} % Identité
+\DeclareMathOperator{\id}{id} % Identité
 
 % Interval d'entiers ou interprétation d'un terme en logique.
 \DeclareMathOperator{\llbracket}{[\![}
@@ -178,12 +179,13 @@ citecolor = blue}
 \DeclareMathOperator{\image}{Im} % Image
 % Remarque \ker est déjà défini par amsmath ! !
 \DeclareMathOperator{\Vect}{Vect} % Espace vectoriel engendré
-\newcommand\End{\text{End}} % Endomorphismes
-\newcommand\Hom{\text{Hom}} % Hom-set
+\DeclareMathOperator{\rg}{rg} % rang (fr)
+\DeclareMathOperator{\End}{End} % Endomorphismes
+\DeclareMathOperator{\Hom}{Hom} % Hom-set
 
 \newcommand\quot[1]{\Z/{#1}\Z} % \quot{n} = Z/nZ
 
-\newcommand\Card{\text{Card}} % Cardinal
+\DeclareMathOperator{\Card}{Card} % Cardinal
 
 \newcommand\Legendre[2]{\left(\dfrac{{#1}}{{#2}}\right)}  % Symbole de Legendre et Jacobi
 
@@ -192,7 +194,7 @@ citecolor = blue}
 \newcommand\carac[1]{\mathbf{1}_{#1}} % Fonction indicatrice 2
 
 % REFERENCES
-\newcommand{\pagenom}{p.}
+\def{\pagenom}{p.}
 \newcommand\refe[1]{\ref{#1}\ {\pagenom}\, \pageref{#1}}
 \newcommand\eqrefe[1]{\eqref{#1}\ {\pagenom}\, \pageref{#1}}
 
