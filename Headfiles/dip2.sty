@@ -1,0 +1,600 @@
+%% Informations générales
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{dip2}
+
+%% Chargement des extensions
+% CARACTERES
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{ucs}
+
+% SOULIGNEMENT
+\RequirePackage[normalem]{ulem}
+% GEOMETRY
+\RequirePackage{geometry}%\geometry{a4paper, hmargin=50pt, vmargin=75pt} % Régler les marges horizontales et verticales.
+% LANGUAGE
+\RequirePackage[english,francais]{babel}
+% SYMBOLS, FONTS
+\RequirePackage{bm,amsmath,amssymb,amsthm}
+\RequirePackage{fontawesome}
+% TYPOGRAPHY
+\RequirePackage{microtype}
+% GRAPHICS
+\RequirePackage{graphicx} % Permet de mettre des images
+% THEOREMS
+\RequirePackage{thmbox} % Met les théorèmes dans des boites
+% ENUMERATE
+\RequirePackage{enumerate, enumitem} % Permet de faire des énumérations genre (i), (ii), (iii).
+% Gestion des figures : WRAPFIG, SUBFIG
+\RequirePackage{wrapfig, subfig}
+% LASTPAGE
+\RequirePackage{lastpage}
+% FANCY HEADER
+\RequirePackage{fancyhdr}
+% COMMENT (corrections)
+\RequirePackage{comment}
+% MATH PREPA : tableau de variation, système linéaire
+\Requirepackage{tkz-tab, systeme}
+% EUROS ET SYMBOLES
+\RequirePackage{textcomp, eurosym}
+% MULTICOLS (Conflit avec =twocolumn=)
+\RequirePackage{multicols}
+% INDEX
+\RequirePackage{makeidx} % Permet de construire un index sémantique (comme à la fin des livres) trop la classe !
+% COULEURS PERSOS
+\RequirePackage{color}
+% FLECHES, SYMBOLES, GRAPHES, AUTOMATES
+\RequirePackage{pgf,tikz,pgfplots} % ajoute des symboles de flèches et autres.
+\usetikzlibrary{matrix,arrows,automata} % Permet de constuire des graphes.
+% ALGORITHMES
+\RequirePackage[ruled,vlined,french]{algorithm2e} % Permet d'écrire des algos.
+
+% LINKS
+\RequirePackage{hyperref} % toujours le mettre en dernier !
+\hypersetup{%
+colorlinks = true,%
+linkcolor = black,%
+urlcolor = blue,%
+citecolor = blue}
+
+%% Déclaration des booléens et des options
+\newif\if@category\@categoryfalse%
+\newif\if@thm\@thmfalse%
+\newif\if@couleur\@couleurfalse%
+\newif\if@draft\@draftfalse%
+\newif\if@header\@headerfalse%
+\newif\if@minimal\@minimalfalse%
+
+\DeclareOption{ct}{\@categorytrue}
+\DeclareOption{thm}{
+  \@thmtrue%
+  \@couleurtrue%
+}
+\DeclareOption{tsi}{
+  \@thmtrue%
+  \@couleurtrue%
+  \@headertrue%
+}
+\DeclareOption{couleur}{\@couleurtrue}
+\DeclareOption{draft}{\@drafttrue}
+\DeclareOption{minimal}{%
+	\@minimaltrue%
+	\@couleurfalse%
+	\@thmfalse%*
+	\@categoryfalse%
+}
+
+\DeclareOption*{%
+\PackageWarning{dipneuste}{Option inconnue : ‘\CurrentOption’}%
+}
+
+
+\ProcessOptions\relax
+
+%MATHBB
+\DeclareMathOperator\B{\mathbb{B}} % aucune idée
+\DeclareMathOperator\C{\mathbb{C}} % Complexes
+\DeclareMathOperator\D{\mathbb{D}} % Décimaux
+\DeclareMathOperator\E{\mathbb{E}} % Espérance
+\DeclareMathOperator\F{\mathbb{F}} % Corps fini
+\DeclareMathOperator\Ha{\mathbb{H}} % Quaternions (Ha__milton)
+\DeclareMathOperator\K{\mathbb{K}} % Corps quelconque
+\DeclareMathOperator\N{\mathbb{N}} % Entiers naturels
+\DeclareMathOperator\Q{\mathbb{Q}} % Rationnels
+\DeclareMathOperator\R{\mathbb{R}} % Réels
+\def\S{\mathbb{S}} % Sphère
+\DeclareMathOperator\T{\mathbb{T}} % Tore
+\DeclareMathOperator\Pro{\mathbb{P}} %  Proba
+\DeclareMathOperator\U{\mathbb{U}} %  Groupe unitaire
+\DeclareMathOperator\Z{\mathbb{Z}} % Entiers relatifs
+
+%MATHCAL
+\DeclareMathOperator\Aa{\mathcal{A}} % Tribu
+\DeclareMathOperator\Bb{\mathcal{B}} % Boréliens
+\DeclareMathOperator\Cc{\mathcal{C}} % Fonctions continues
+\DeclareMathOperator\Dd{\mathcal{D}}
+\DeclareMathOperator\Ee{\mathcal{E}} % Fonctions lisses
+\DeclareMathOperator\Ff{\mathcal{F}} % Faisceau générique
+\DeclareMathOperator\Gg{\mathcal{G}} % ...
+\DeclareMathOperator\Hh{\mathcal{H}} % Espace de Hilbert
+\DeclareMathOperator\Ii{\mathcal{I}} % Idéal
+\DeclareMathOperator\Jj{\mathcal{J}} % ...
+\DeclareMathOperator\Ll{\mathcal{L}} % Applications linéaires 
+\DeclareMathOperator\Mm{\mathcal{M}} % Matrices
+\DeclareMathOperator\Nn{\mathcal{N}} % 
+\DeclareMathOperator\Oo{\mathcal{O}} %
+\DeclareMathOperator\Pp{\mathcal{P}} % Parties d'un ensemble
+\DeclareMathOperator\Qq{\mathcal{Q}} % Proposition
+\DeclareMathOperator\Rr{\mathcal{R}} % Relation d'équivalence
+\DeclareMathOperator\Ss{\mathcal{S}} % Système
+\DeclareMathOperator\Tt{\mathcal{T}} % Topologie
+\DeclareMathOperator\Uu{\mathcal{U}}
+
+\DeclareMathOperator\Gl{\mathcal{G}\ell} % Gl_n (K)
+
+%MATHFRAC
+\DeclareMathOperator\Sf{\mathfrak{S}} % Groupe symétrique
+\DeclareMathOperator\Al{\mathfrak{A}} % Groupe alterné
+
+
+
+%DERIVATIONS
+\DeclareMathOperator{\dd}{d\!} 	% d d'intégration comme dans dµ ou dt
+\if@minimal\else
+\DeclareMathOperator{\dbarre}{\bar{\partial}}%
+\DeclareMathOperator{\ddbarre}{\partial\!\bar{\partial}}%
+%\DeclareMathOperator{\ddbarre}{\partial\!\!\bar{\partial}}%
+\newcommand\dpp[2]{\dfrac{\partial{#1}}{\partial{#2}}} %\dpp{f}{x} = df/dx
+\newcommand\dppp[3]{\dfrac{\partial^2{#1}}{\partial{#2}\partial{#3}}} %\dppp{f}{x}{y} = df/(dxdy)
+\newcommand\dpppp[4]{\dfrac{\partial^3{#1}}{\partial{#2}\partial{#3}\partial{#4}}} %\dppp{f}{x}{y}{z} = df/(dxdydz)
+\newcommand\dpppP[4]{\dfrac{\partial^3{#1}}{\partial{#2} {#3} {#4}}} %\dpppP{f}{x}{y}{z} = df/(dxyz)
+\DeclareMathOperator{\Div}{div} % divergence
+\fi
+
+\DeclareMathOperator{\demi}{\frac{1}{2}} % fraction 1/2
+
+\newcommand\ssi{\; \textbf{ssi} \;} % ssi
+
+\DeclareMathOperator{\Vv}{| \! | \! |} % Norme subordonnée ||| A |||
+\newcommand\Nld[1]{\left\Vert {#1} \right\Vert} % Norme 2 : \Nld{f} = || f ||
+\newcommand\NLd[1]{\left\Vert {#1} \right\Vert_{L^2}} % Norme 2 : \NLd{f} = || f ||_2
+
+\DeclareMathOperator{\sh}{sh} % sinus hyperbolique
+
+\DeclareMathOperator{\Id}{Id} % Identité
+\DeclareMathOperator{\id}{id} % Identité
+
+% Interval d'entiers ou interprétation d'un terme en logique.
+\DeclareMathOperator{\llbracket}{[\![}
+\DeclareMathOperator{\rrbracket}{]\!]}
+
+\newcommand\name[2]{{#1}\textsc{ {#2}}} % utilisation : \name{Stefàn}{Banach}
+
+\newcommand\ens[2]{\left\lbrace {#1} \; \left| \; {#2} \right. \right\rbrace } 
+% utilisation : \ens{(x,y) \in \R^2}{x^2 + y^2 = 1}
+
+\newcommand\dessous[2]{\underset{{#1}}{\underbrace{{#2}}}}
+
+\DeclareMathOperator{\image}{Im} % Image
+% Remarque \ker est déjà défini par amsmath ! !
+\DeclareMathOperator{\Vect}{Vect} % Espace vectoriel engendré
+\DeclareMathOperator{\rg}{rg} % rang (fr)
+\DeclareMathOperator{\End}{End} % Endomorphismes
+\DeclareMathOperator{\Hom}{Hom} % Hom-set
+
+\newcommand\quot[1]{\Z/{#1}\Z} % \quot{n} = Z/nZ
+
+\DeclareMathOperator{\Card}{Card} % Cardinal
+
+\newcommand\Legendre[2]{\left(\dfrac{{#1}}{{#2}}\right)}  % Symbole de Legendre et Jacobi
+
+% INDICATRICE
+%\newcommand\1[1]{\mathbf{1}_{\{#1\}}} % Fonction indicatrice
+\newcommand\carac[1]{\mathbf{1}_{#1}} % Fonction indicatrice 2
+
+
+
+\DeclareMathOperator{\Sol}{Sol}
+
+
+\DeclareMathOperator{\bool}{\{\text{Vrai}, \text{Faux}\}}
+
+\newcommand\ov[1]{\overrightarrow{{#1}}}
+
+\DeclareMathOperator{\iv}{\ov{\imath}}
+\DeclareMathOperator{\jv}{\ov{\jmath}}
+
+\renewcommand\v[2]{\begin{pmatrix}{#1} \\ {#2}\end{pmatrix}}
+
+\newcommand\vv[3]{\begin{pmatrix}{#1} \\ {#2} \\ {#3}\end{pmatrix}}
+
+\newcommand\fct[4]{\left(\begin{array}{rcl} {#1} & \longrightarrow & {#2} \\ {#3} & \mapsto & {#4}  \end{array}\right)}
+
+\DeclareMathOperator{\argsh}{argsh}
+
+\DeclareMathOperator{\Aarg}{arg}
+
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Mat}{Mat}
+
+\newcommand{\po}[1]{\!\!\underset{{#1}}{\;{o}\!}}
+\newcommand{\gO}[1]{\!\!\underset{{#1}}{\;\Oo\!}}
+\newcommand{\simu}[1]{\underset{{#1}}{\sim}}
+
+\DeclareMathOperator\Var{\mathbb V}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FILL with lines et FILL with grid
+%% from class exam.cls
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newlength\linefillheight
+\newlength\linefillthickness
+\setlength\linefillheight{.25in}
+\setlength\linefillthickness{0.1pt}
+
+\newcommand\linefill{\leavevmode
+    \leaders\hrule height \linefillthickness \hfill\kern\z@}
+
+
+\newlength\dottedlinefillheight
+\setlength\dottedlinefillheight{.25in}
+
+\newif\if@colorfillwithlines
+\@colorfillwithlinesfalse
+\def\colorfillwithlines{%
+  \@ifundefined{definecolor}
+  {%
+    \ClassError{exam}{%
+      You must load the color package with the command\MessageBreak
+      \space\space\protect\usepackage{color}\MessageBreak
+      in order to use the command \protect\colorfillwithlines
+      \MessageBreak
+      }{%
+      This command makes use of the package color.sty,\MessageBreak
+      and so you have to load color.sty before your\MessageBreak
+      \protect\begin{document} command.\MessageBreak
+      }%
+  }%
+  {%
+    \definecolor{FillWithLinesColor}{gray}{0.8}
+    \@colorfillwithlinestrue
+  }%
+}% \colorfillwithlines
+\def\nocolorfillwithlines{\@colorfillwithlinesfalse}
+
+\newcommand\fillwithlines[1]{%
+  \if@colorfillwithlines
+    \color@begingroup
+      \color{FillWithLinesColor}%
+      \do@fillwithlines{#1}%
+    \color@endgroup
+  \else
+    \do@fillwithlines{#1}%
+  \fi
+}% \fillwithlines
+\def\do@fillwithlines#1{%
+  \begingroup
+  \ifhmode
+    \par
+  \fi
+  \hrule height \z@
+  \nobreak
+  \setbox0=\hbox to \hsize{\hskip \@totalleftmargin
+          \vrule height \linefillheight depth \z@ width \z@
+          \linefill}%
+  % We use \cleaders (rather than \leaders) so that a given
+  % vertical space will always produce the same number of lines
+  % no matter where on the page it happens to start:
+  \cleaders \copy0 \vskip #1 \hbox{}%
+  \endgroup
+}% \do@fillwithdottedlines
+  
+\newif\if@colorgrids
+\newcommand\colorgrids{%
+  \@ifundefined{definecolor}
+  {%
+    \ClassError{exam}{%
+      You must load the color package with the command\MessageBreak
+      \space\space\protect\usepackage{color}\MessageBreak
+      in order to use the command \protect\colorgrids
+      }{%
+      This command makes use of the package color.sty,\MessageBreak
+      and so you have to load color.sty before your\MessageBreak
+      \protect\begin{document} command.\MessageBreak
+      }%
+  }%
+  {%
+    \definecolor{GridColor}{gray}{0.8}
+    \@colorgridstrue
+  }%
+}% \colorgrids
+\newcommand\nocolorgrids{\@colorgridsfalse}
+\nocolorgrids
+
+\newlength\gridsize
+\newlength\gridlinewidth
+\setlength{\gridsize}{5mm}
+\setlength{\gridlinewidth}{0.1pt}
+
+\def\fillwithgrid#1{%
+  \begingroup
+  \ifhmode
+    \par
+  \fi
+  \hrule height \z@
+  \nobreak
+
+  % We first set box0 equal to an \hbox which, when printed, is a
+  % square with width and height equal to \gridsize+\gridlinewidth,
+  % but which has
+  % width equal to \gridsize,
+  % height equal to \gridsize, and
+  % depth equal to 0pt.
+  % When we put multiple copies of it together using \leaders or
+  % \cleaders, the right edge will coincide with the left edge of the
+  % next box and the bottom edge will coincide with the top edge of
+  % the box below it.
+  \setlength{\@tempdima}{\gridsize}
+  \addtolength{\@tempdima}{\gridlinewidth}
+  \setlength{\@tempdimb}{\gridsize}
+  \addtolength{\@tempdimb}{-\gridlinewidth}
+  \setbox0=\hbox{%
+    \rlap{\vrule height \gridsize depth \gridlinewidth width \gridlinewidth}%
+    \rlap{\vrule height \gridsize depth -\@tempdimb width \@tempdima}%
+    \vrule height 0pt depth \gridlinewidth width \@tempdima
+    \llap{\vrule height \gridsize depth \gridlinewidth width \gridlinewidth}%
+  }%
+  \wd0=\gridsize
+  \dp0=0pt
+  % Now we set box1 equal to an \hbox containing a single line of
+  % copies of box0.  We use \leaders (instead of \cleaders) so that
+  % if we use it twice on a page, once with a question and once
+  % with a part, the boxes will line up vertically.  We add a kern of
+  % \gridlinewidth at the right because the rightmost vertical line
+  % appears to the right of where the \leaders command thinks that it
+  % appears.
+  \setbox1=\hbox to \textwidth{%
+    \color@begingroup
+    \if@colorgrids
+      \color{GridColor}%
+    \fi
+    \hskip \@totalleftmargin \leaders\copy0\hfil \kern\gridlinewidth
+    \color@endgroup
+  }%
+  % Finally: We create the grid, using \cleaders: We use \cleaders
+  % (rather than \leaders) so that a given vertical space will always
+  % produce the same number of lines no matter where on the page it
+  % happens to start.  We add a kern of \gridlinewidth because the
+  % bottommost horizontal line appears below where the \cleaders
+  % command thinks that it appears.
+  \cleaders \copy1 \vskip #1 \kern \gridlinewidth \hbox{}%
+  \endgroup
+}% fillwithgrid
+
+%LABEL ITEMS
+\AtBeginDocument{%
+\renewcommand{\labelitemi}{$\bullet$}%
+\renewcommand{\labelitemii}{$\blacktriangleright$}%
+\renewcommand{\labelitemiii}{$\circ$}%
+\renewcommand{\labelitemiv}{$\triangleright$}%
+}
+
+% COULEURS
+\if@couleur
+	\definecolor{DarkRed}{rgb}{0.55,0,0.1} 
+	\definecolor{DarkBlue}{rgb}{0.1,0,0.55}  
+	\definecolor{DarkGreen}{rgb}{0,0.55,0.1} 
+	\definecolor{DarkBrown}{rgb}{0.3,0.2,0.1}
+%	
+	\definecolor{xdxdff}{rgb}{0.49,0.49,1.}
+	\definecolor{ududff}{rgb}{0.30,0.30,1.}
+	\definecolor{qqqqff}{rgb}{0.,0.,1.}
+	\definecolor{ccqqqq}{rgb}{0.8,0.,0.}
+	\definecolor{qqwuqq}{rgb}{0.,0.4,0.}
+	\definecolor{dcrutc}{rgb}{0.86,0.078,0.24}
+	\definecolor{uuuuuu}{rgb}{0.27,0.27,0.27}
+	\definecolor{zzttqq}{rgb}{0.6,0.2,0.}
+	\definecolor{yqqqqq}{rgb}{0.50,0.,0.}
+	\definecolor{yqqqyq}{rgb}{0.50,0.,0.50}
+	\definecolor{cqcqcq}{rgb}{0.75,0.75,0.75}
+%	
+	\definecolor{codegreen}{rgb}{0,0.6,0}
+	\definecolor{codegreendark}{rgb}{0,0.3,0}
+	\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+	\definecolor{codepurple}{rgb}{0.58,0,0.82}
+	\definecolor{backcolour}{rgb}{0.98,0.98,0.95}
+	\definecolor{gren}{rgb}{0,0,0}
+	\definecolor{purple}{rgb}{0.5,0,0.5}
+	\definecolor{darkred}{rgb}{0.5,0,0}
+	\definecolor{orange}{rgb}{1,0.5,0}
+	\definecolor{lightgrey}{rgb}{.97,.97,.97}
+\fi
+%Pour utiliser sur le texte "banane" écrire {\color{DarkRed} banane}
+%... peut s'utiliser sur de larges parties du texte.
+
+\if@couleur
+\colorgrids
+%\definecolor{GridColor}{gray}{0.8}
+\definecolor{GridColor}{rgb}{0.75, 0.75, 0.75}
+\fi
+
+%THM
+\if@thm
+
+% Couleur
+\def\thmbox@color{black}
+\define@key{thmbox}{color}{\def\thmbox@color{#1}}
+\def\thmbox@head#1{%
+  \par\noindent\vbox{%
+    \setbox\thmbox@box@=\hbox{%
+      \vrule width 0mm height 0mm depth \thmbox@vskip%
+      #1}%
+    \copy\thmbox@box@%
+    \ifthmbox@underline%
+       \color@begingroup\color{\thmbox@color}\hrule width \wd\thmbox@box@ height \thmbox@thickness\color@endgroup%
+    \fi}%
+  \hrule height 0mm\relax}
+\def\thmbox@put#1{
+  \vskip\z@%
+  \noindent%
+  \hbox{%
+    {\dimen0=\thmbox@leftmargin%
+     \advance\dimen0-\thmbox@hskip%
+     \advance\dimen0-\thmbox@thickness%
+     \hskip\dimen0}%
+    \color@begingroup\color{\thmbox@color}\vrule width \thmbox@thickness\color@endgroup%
+    \hskip\thmbox@hskip%
+    \box#1%
+    \ifx\thmbox@style L%
+      \hskip\thmbox@hskip%
+      \color@begingroup\color{\thmbox@color}\vrule width \thmbox@thickness\color@endgroup%
+    \fi}%
+  \par\nobreak}
+\def\thmbox@tail{%
+  \hrule height 0mm%
+  \ifx\thmbox@style M%
+    \thmbox@dim=1cm%
+  \else\ifx\thmbox@style L%
+    \thmbox@dim=\hsize%
+    \advance\thmbox@dim-\thmbox@leftmargin%
+    \advance\thmbox@dim-\thmbox@rightmargin%
+    \advance\thmbox@dim2\thmbox@hskip%
+    \advance\thmbox@dim2\thmbox@thickness%
+  \fi\fi%
+  \noindent%
+  {\dimen0=\thmbox@leftmargin%
+   \advance\dimen0-\thmbox@hskip%
+   \advance\dimen0-\thmbox@thickness%
+   \hskip\dimen0}%
+  \color@begingroup\color{\thmbox@color}\vrule width \thmbox@dim height \thmbox@thickness\color@endgroup%
+  \par}
+
+
+
+
+
+	\newtheorem[M, color = DarkRed]{lem}{Lemme}
+	\newtheorem[S]{exemple}{Exemple}
+	\newtheorem[S]{exo}{Exercice}
+	\newtheorem[S]{rem}{Remarque}
+	\newtheorem[M, cut=false, color = DarkRed]{thm}{Théorème}
+
+	\theoremstyle{definition}
+	\newtheorem[M,cut=false, color=DarkGreen]{defi}{Définition}
+	\newtheorem[S,cut=false]{prop}{Proposition}
+	\newtheorem[S]{cor}{Corollaire}
+	\newtheorem[S,cut=false, headstyle=\bfseries\boldmath{Exercice},bodystyle=\noindent]{Eno}{}
+\fi
+
+%DRAFT
+\if@draft
+	\newcommand{\todo}{%
+		\textbf{\large \color{DarkRed} To Do ! ! }%
+		\marginpar{ \color{DarkRed} To Do ! ! }%
+	}
+	\newcommand{\question}{%
+		\textbf{\large \color{DarkGreen} Question ?! }%
+		\marginpar{ \color{DarkGreen} Question ?! }%
+	}
+	\newcommand{\?}{%
+		\begin{tikzpicture}[remember picture,overlay,baseline=(0.base)]%
+			\node[] (0) {\bf ?};
+			\node[circle, draw, scale=3, fill=red, opacity=0.3, color=DarkGreen] {\bf ?};%
+		\end{tikzpicture}%
+	}
+	\newcommand{\excl}{%
+		\begin{tikzpicture}[remember picture,overlay,baseline=(0.base)]%
+			\node[] (0) {\bf !};
+			\node[circle, draw, scale=3, fill=red, opacity=0.3, color=DarkBlue] {\bf !};%
+		\end{tikzpicture}%
+	}
+	\geometry{a4paper, hmargin=60pt, vmargin=75pt}
+\fi
+
+% HEADER
+
+\if@header
+\renewcommand{\headrulewidth}{1pt}
+\pagestyle{fancy}
+
+\rhead{\small p. \thepage /\pageref{LastPage}}
+\cfoot{}
+\chead{}
+\lhead{\small \textsc{Tsi} 1 Lycée B. Franklin}
+
+\fancypagestyle{firststyle}{
+   \rhead{\small p. \thepage /\pageref{LastPage}}
+   \chead{}
+   \cfoot{}
+   \renewcommand{\headrulewidth}{0}
+   \lhead{\small \textsc{Tsi} 1 Lycée B. Franklin}}
+
+\fancypagestyle{firststyle2}{
+   \rhead{\small p. \thepage /\pageref{LastPage}}
+   \chead{}
+   \cfoot{}
+   \renewcommand{\headrulewidth}{0}
+   \lhead{\small \textsc{Tsi} 1 Benjam}}
+
+\fancypagestyle{firstcontrole}{
+   \rhead{\small \textsc{Nom} Prénom}
+   \chead{}
+   \cfoot{}
+   \renewcommand{\headrulewidth}{0}
+   \lhead{\small \textsc{Tsi} 1 Benjam}}
+
+\fi
+
+% A trier
+
+\newcommand\ogfg[1]{\og~{#1}~\fg}
+
+\pgfplotsset{compat=1.13}
+
+\renewcommand\ThisComment[1]{%
+   \immediate\write\CommentStream{\unexpanded{#1}}%
+}
+
+\if@trou
+   \newenvironment{correction}{\begingroup\color{white}\Large}{\endgroup}
+   \newenvironment{elevide}{\begingroup\color{white}\Large}{\endgroup}
+\else
+   \specialcomment{correction}{\par{\bf\small correction :}\begingroup\small\color{DarkBrown}}{\endgroup}
+   \specialcomment{elevide}{\begingroup\small\color{DarkBrown}}{\endgroup}
+   \if@prof
+      \includecomment{correction}
+      \includecomment{elevide}
+   \else
+      \excludecomment{correction}
+      \excludecomment{elevide}
+   \fi
+\fi
+
+\newcommand\facile{\faBicycle{}}
+\newcommand\moyen{\faPlane{}}
+\newcommand\dur{\faRocket{}}
+
+\newcommand\doublebarre{\faBullseye{}}
+\newcommand\cible{\faBullseye{}}
+
+\newcommand\tlong{\faHourglassEnd{}\ }
+\newcommand\court{\faHourglassO{}\ }
+
+\newcommand\ordi{\faLaptop{}\ }
+\newcommand\ecrit{\faPencil{}\ }
+
+\newcommand\llsi{\faWrench{}\ }
+\newcommand\llpc{\faFlask{}\ }
+
+\newcommand\attention{\faWarning{}\ }
+
+\newcommand\methode{\faCube{}\ }
+
+\newcommand\cdp[1]{\url{http://cahier-de-prepa.fr/tsi1-benjam/#1}} % Lien vers la page cahier-de-prepa.fr
+
+%% Fin du package
+\endinput
