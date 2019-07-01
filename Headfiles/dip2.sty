@@ -34,11 +34,11 @@
 % COMMENT (corrections)
 \RequirePackage{comment}
 % MATH PREPA : tableau de variation, système linéaire
-\Requirepackage{tkz-tab, systeme}
+\RequirePackage{tkz-tab, systeme}
 % EUROS ET SYMBOLES
 \RequirePackage{textcomp, eurosym}
 % MULTICOLS (Conflit avec =twocolumn=)
-\RequirePackage{multicols}
+\RequirePackage{multicol}
 % INDEX
 \RequirePackage{makeidx} % Permet de construire un index sémantique (comme à la fin des livres) trop la classe !
 % COULEURS PERSOS
@@ -528,6 +528,7 @@ citecolor = blue}
 % HEADER
 
 \if@header
+\geometry{hmargin = 5em, tmargin = 5em, bmargin = 3.5em}
 \renewcommand{\headrulewidth}{1pt}
 \pagestyle{fancy}
 
