@@ -70,7 +70,10 @@ citecolor = blue}
 % Options
 \DeclareOption{ct}{\@categorytrue}
 \DeclareOption{prof}{\@proftrue}
-\DeclareOption{eleve}{\@proffalse}
+\DeclareOption{eleve}{
+  \@proffalse%
+  \@troutrue%
+}
 \DeclareOption{trou}{\@troutrue}
 \DeclareOption{corrige}{
   \@proftrue%
@@ -572,15 +575,19 @@ citecolor = blue}
 
 \if@trou
    \newenvironment{correction}{\begingroup\color{white}\Large}{\endgroup}
+   \newenvironment{demo}{\begingroup\color{white}\Large}{\endgroup}
    \newenvironment{elevide}{\begingroup\color{white}\Large}{\endgroup}
 \else
    \specialcomment{correction}{\par{\bf\small correction :}\begingroup\small\color{DarkBrown}}{\endgroup}
    \specialcomment{elevide}{\begingroup\small\color{DarkBrown}}{\endgroup}
+   \specialcomment{demo}{\begingroup\small\color{DarkBrown}}{\endgroup}
    \if@prof
       \includecomment{correction}
+      \includecomment{demo}
       \includecomment{elevide}
    \else
       \excludecomment{correction}
+      \excludecomment{demo}
       \excludecomment{elevide}
    \fi
 \fi
