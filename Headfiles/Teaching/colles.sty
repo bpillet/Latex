@@ -226,7 +226,7 @@ citecolor = blue}
 \renewcommand\thesubsection{\arabic{subsection}}%
 
 \def\classe{}
-\def\numerocolle{}
+%\def\numerocolle{}
 
 \newcounter{exo}
 \newcounter{cours}
@@ -236,7 +236,7 @@ citecolor = blue}
   \refstepcounter{exo}%
   \parbox{\mdat}{%
     \classe \\ \@date\\%
-    (\textbf{\numerocolle}.\Alph{exo})}\qquad%
+    (\textbf{\thenumerocolle}.\Alph{exo})}\qquad%
   \begin{minipage}{\wdth}}{%
   \end{minipage}%
   \bigskip%
@@ -250,7 +250,7 @@ citecolor = blue}
   \smallskip%
   \parbox{\mdat}{%
     Corr. \\ \@date\\%
-    (\textbf{\numerocolle}.\Alph{exo})}%
+    (\textbf{\thenumerocolle}.\Alph{exo})}%
   \quad%
   \begin{minipage}{\wdth}%    
     \color{DarkRed}%
@@ -287,7 +287,7 @@ citecolor = blue}
   \refstepcounter{cours}%
   \parbox{\mdat}{%
    \classe \\ \@date\\%
-    (\textbf{\numerocolle}.\textit{\roman{cours}})}\qquad%
+    (\textbf{\thenumerocolle}.\textit{\roman{cours}})}\qquad%
   \begin{minipage}{\wdth}%
     \textbf{Question de cours}\par%
     \medskip}{%
