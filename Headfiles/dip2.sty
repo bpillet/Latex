@@ -72,10 +72,12 @@ citecolor = blue}
 % Options
 \DeclareOption{ct}{\@categorytrue}
 \DeclareOption{prof}{\@proftrue}
+
 \DeclareOption{td}{
   \@proffalse%
   \@troufalse%
 }
+
 \DeclareOption{eleve}{
   \@proffalse%
   \@troutrue%
@@ -235,6 +237,11 @@ citecolor = blue}
 
 \renewcommand{\Re}{\operatorname{Re}}
 \renewcommand{\Im}{\operatorname{Im}}
+
+\newcommand\Iff[2]{\left[{#1}, {#2}\right]}
+\newcommand\Iof[2]{\left]{#1}, {#2}\right]}
+\newcommand\Ifo[2]{\left[{#1}, {#2}\right[\:}
+\newcommand\Ioo[2]{\left]{#1}, {#2}\right[\:}
 
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\Mat}{Mat}
