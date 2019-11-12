@@ -33,8 +33,6 @@
 \RequirePackage{fancyhdr}
 % COMMENT (corrections)
 \RequirePackage{comment}
-% MATH PREPA : tableau de variation, système linéaire
-\RequirePackage{tkz-tab, systeme}
 % EUROS ET SYMBOLES
 \RequirePackage{textcomp, eurosym}
 % MULTICOLS (Conflit avec =twocolumn=)
@@ -44,12 +42,16 @@
 % COULEURS PERSOS
 \RequirePackage{color}
 % FLECHES, SYMBOLES, GRAPHES, AUTOMATES
-\RequirePackage{pgf,tikz,pgfplots} % ajoute des symboles de flèches et autres.
+\RequirePackage{pgf,tikz,pgfplots,tkz-base} % ajoute des symboles de flèches et autres.
 \usetikzlibrary{matrix,arrows,automata} % Permet de constuire des graphes.
+% MATH PREPA : tableau de variation, système linéaire
+\RequirePackage{tkz-tab, systeme}
 % ALGORITHMES
 \RequirePackage[ruled,vlined,french]{algorithm2e} % Permet d'écrire des algos.
 % UNITÉS  et FRACTIONS
 \RequirePackage{units}
+% ENCADREMENT
+\RequirePackage{mdframed}
 
 % LINKS
 \RequirePackage{hyperref} % toujours le mettre en dernier !
@@ -193,6 +195,7 @@ citecolor = blue}
 
 \newcommand\ens[2]{\left\lbrace {#1} \; \left| \; {#2} \right. \right\rbrace } 
 % utilisation : \ens{(x,y) \in \R^2}{x^2 + y^2 = 1}
+\newcommand\ensp[2]{\left\lbrace {#1} \; : \; {#2} \right\rbrace } 
 
 \newcommand\dessous[2]{\underset{{#1}}{\underbrace{{#2}}}}
 
@@ -448,6 +451,8 @@ citecolor = blue}
 \definecolor{GridColor}{rgb}{0.75, 0.75, 0.75}
 \fi
 
+\newenvironment{boxu}{\begin{mdframed}}{\end{mdframed}}
+
 %THM
 \if@thm
 
@@ -549,28 +554,36 @@ citecolor = blue}
 \pagestyle{fancy}
 
 \rhead{\small p. \thepage /\pageref{LastPage}}
-\cfoot{}
 \chead{}
+\cfoot{\if@prof%
+   $\star$%
+   \fi}
 \lhead{\small \textsc{Tsi} 1 Lycée B. Franklin}
 
 \fancypagestyle{firststyle}{
    \rhead{\small p. \thepage /\pageref{LastPage}}
    \chead{}
-   \cfoot{}
+   \cfoot{\if@prof%
+   $\star$%
+   \fi}
    \renewcommand{\headrulewidth}{0}
    \lhead{\small \textsc{Tsi} 1 Lycée B. Franklin}}
 
 \fancypagestyle{firststyle2}{
    \rhead{\small p. \thepage /\pageref{LastPage}}
    \chead{}
-   \cfoot{}
+   \cfoot{\if@prof%
+   $\star$%
+   \fi}
    \renewcommand{\headrulewidth}{0}
    \lhead{\small \textsc{Tsi} 1 Benjam}}
 
 \fancypagestyle{firstcontrole}{
    \rhead{\small \textsc{Nom} Prénom}
    \chead{}
-   \cfoot{}
+   \cfoot{\if@prof%
+   $\star$%
+   \fi}
    \renewcommand{\headrulewidth}{0}
    \lhead{\small \textsc{Tsi} 1 Benjam}}
 
@@ -591,14 +604,14 @@ citecolor = blue}
    \newenvironment{demo}{\begingroup\color{white}\Large}{\endgroup}
    \newenvironment{elevide}{\begingroup\color{white}\Large}{\endgroup}
 \else
-   \specialcomment{correction}{\par{\bf\small correction :}\begingroup\small\color{DarkBrown}}{\endgroup}
    \specialcomment{elevide}{\begingroup\small\color{DarkBrown}}{\endgroup}
    \specialcomment{demo}{\begingroup\small\color{DarkBrown}}{\endgroup}
    \if@prof
-      \includecomment{correction}
+      \newenvironment{correction}{\par{\bf\small correction :}\begingroup\small\color{DarkBrown}}{\endgroup}
       \includecomment{demo}
       \includecomment{elevide}
    \else
+      \specialcomment{correction}{\par{\bf\small correction :}\begingroup\small\color{DarkBrown}}{\endgroup}
       \excludecomment{correction}
       \excludecomment{demo}
       \excludecomment{elevide}
