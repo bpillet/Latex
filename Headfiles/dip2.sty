@@ -50,6 +50,8 @@
 \RequirePackage[ruled,vlined,french]{algorithm2e} % Permet d'écrire des algos.
 % UNITÉS  et FRACTIONS
 \RequirePackage{units}
+% ENCADREMENT
+\RequirePackage{mdframed}
 
 % LINKS
 \RequirePackage{hyperref} % toujours le mettre en dernier !
@@ -449,6 +451,8 @@ citecolor = blue}
 \definecolor{GridColor}{rgb}{0.75, 0.75, 0.75}
 \fi
 
+\newenvironment{boxu}{\begin{mdframed}}{\end{mdframed}}
+
 %THM
 \if@thm
 
@@ -550,28 +554,36 @@ citecolor = blue}
 \pagestyle{fancy}
 
 \rhead{\small p. \thepage /\pageref{LastPage}}
-\cfoot{}
 \chead{}
+\cfoot{\if@prof%
+   $\star$%
+   \fi}
 \lhead{\small \textsc{Tsi} 1 Lycée B. Franklin}
 
 \fancypagestyle{firststyle}{
    \rhead{\small p. \thepage /\pageref{LastPage}}
    \chead{}
-   \cfoot{}
+   \cfoot{\if@prof%
+   $\star$%
+   \fi}
    \renewcommand{\headrulewidth}{0}
    \lhead{\small \textsc{Tsi} 1 Lycée B. Franklin}}
 
 \fancypagestyle{firststyle2}{
    \rhead{\small p. \thepage /\pageref{LastPage}}
    \chead{}
-   \cfoot{}
+   \cfoot{\if@prof%
+   $\star$%
+   \fi}
    \renewcommand{\headrulewidth}{0}
    \lhead{\small \textsc{Tsi} 1 Benjam}}
 
 \fancypagestyle{firstcontrole}{
    \rhead{\small \textsc{Nom} Prénom}
    \chead{}
-   \cfoot{}
+   \cfoot{\if@prof%
+   $\star$%
+   \fi}
    \renewcommand{\headrulewidth}{0}
    \lhead{\small \textsc{Tsi} 1 Benjam}}
 
@@ -592,14 +604,14 @@ citecolor = blue}
    \newenvironment{demo}{\begingroup\color{white}\Large}{\endgroup}
    \newenvironment{elevide}{\begingroup\color{white}\Large}{\endgroup}
 \else
-   \specialcomment{correction}{\par{\bf\small correction :}\begingroup\small\color{DarkBrown}}{\endgroup}
    \specialcomment{elevide}{\begingroup\small\color{DarkBrown}}{\endgroup}
    \specialcomment{demo}{\begingroup\small\color{DarkBrown}}{\endgroup}
    \if@prof
-      \includecomment{correction}
+      \newenvironment{correction}{\par{\bf\small correction :}\begingroup\small\color{DarkBrown}}{\endgroup}
       \includecomment{demo}
       \includecomment{elevide}
    \else
+      \specialcomment{correction}{\par{\bf\small correction :}\begingroup\small\color{DarkBrown}}{\endgroup}
       \excludecomment{correction}
       \excludecomment{demo}
       \excludecomment{elevide}
