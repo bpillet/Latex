@@ -33,19 +33,19 @@
 \RequirePackage{fancyhdr}
 % COMMENT (corrections)
 \RequirePackage{comment}
+% MATH PREPA : tableau de variation, système linéaire
+\RequirePackage{tkz-tab, systeme}
 % EUROS ET SYMBOLES
 \RequirePackage{textcomp, eurosym}
 % MULTICOLS (Conflit avec =twocolumn=)
-\RequirePackage{multicol}
+% \RequirePackage{multicol}
 % INDEX
 \RequirePackage{makeidx} % Permet de construire un index sémantique (comme à la fin des livres) trop la classe !
 % COULEURS PERSOS
 \RequirePackage{color}
 % FLECHES, SYMBOLES, GRAPHES, AUTOMATES
-\RequirePackage{pgf,tikz,pgfplots,tkz-base} % ajoute des symboles de flèches et autres.
+\RequirePackage{pgf,tikz,pgfplots} % ajoute des symboles de flèches et autres.
 \usetikzlibrary{matrix,arrows,automata} % Permet de constuire des graphes.
-% MATH PREPA : tableau de variation, système linéaire
-\RequirePackage{tkz-tab, systeme}
 % ALGORITHMES
 \RequirePackage[ruled,vlined,french]{algorithm2e} % Permet d'écrire des algos.
 % UNITÉS  et FRACTIONS
@@ -193,7 +193,6 @@ citecolor = blue}
 
 \newcommand\ens[2]{\left\lbrace {#1} \; \left| \; {#2} \right. \right\rbrace } 
 % utilisation : \ens{(x,y) \in \R^2}{x^2 + y^2 = 1}
-\newcommand\ensp[2]{\left\lbrace {#1} \; : \; {#2} \right\rbrace } 
 
 \newcommand\dessous[2]{\underset{{#1}}{\underbrace{{#2}}}}
 
