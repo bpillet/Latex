@@ -196,7 +196,11 @@ citecolor = blue}
 \newcommand\ens[2]{\left\lbrace {#1} \; \left| \; {#2} \right. \right\rbrace } 
 % utilisation : \ens{(x,y) \in \R^2}{x^2 + y^2 = 1}
 \newcommand\ensp[2]{\left\lbrace {#1} \; : \; {#2} \right\rbrace } 
-\newcommand\ensva[1]{{\color{DarkBlue}\left\lbrace \color{black} {#1} \color{DarkBlue}\right\rbrace}}
+
+\if@couleur
+  \newcommand\ensva[1]{{\color{DarkBlue}\left\lbrace \color{black} {#1} \color{DarkBlue}\right\rbrace}}
+\fi
+
 \newcommand\dessous[2]{\underset{{#1}}{\underbrace{{#2}}}}
 
 \DeclareMathOperator{\image}{Im} % Image
