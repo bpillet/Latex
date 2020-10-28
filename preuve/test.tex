@@ -1,0 +1,150 @@
+\documentclass[draft]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{ucs}
+\usepackage{bm,amsmath,amssymb}
+
+\usepackage{preuve}
+
+\DeclareMathOperator\R{\mathbb{R}} % Réels
+\newcommand\Iff[2]{\left[{#1}, {#2}\right]}
+\newcommand\Iof[2]{\left]{#1}, {#2}\right]}
+\newcommand\Ifo[2]{\left[{#1}, {#2}\right[\:}
+\newcommand\Ioo[2]{\left]{#1}, {#2}\right[\:}
+
+\begin{document}
+
+\section{Une première preuve}
+\mq{$\forall x \in \R, \exists y \in \R, x > y$}
+\soit{$x \in \mathbb R$}
+\mq{$\exists y \in \R, x > y$}
+\onpose{$y = x - 1$}
+\mq{$x > y$}
+On a bien $y \in \R$ et de plus comme $-1 < 0$, on a $x - 1 < x$ et donc $y < x$. Ce qui peut se réécrire $x > y$.
+\finpose{$y$}
+On a donc montré $\exists y \in \R, x>y$.
+\finsoit{$x$}
+Ainsi on a montré $\forall x \in \R, \exists y \in \R, x > y$. CQFD.
+
+\section{Par l'absurde}
+\mq{$0 \neq 1$}
+\absurde{$0 = 1$}
+On a donc $1 = 2$ ou encore par symétrie, $2 = 1$. Or le pape et moi somme deux personnes distinctes donc puisque $2 = 1$, le pape et moi somme une seule et même personne. Autrement dit : je suis le pape. C'est absurde car je ne parle pas latin et je n'ai même pas de chapeau.
+\contradiction{$0 = 1$}
+Ainsi on a montré que $0 \neq 1$.
+
+\pagebreak
+
+\section{Continuité de la fonction sinus}
+\mq{$\forall \varepsilon > 0, \exists \eta > 0, \forall x \in \R, \left(\vert x \vert < \eta\right) \Rightarrow \left(\vert \sin(x) \vert < \varepsilon \right)$}
+
+\soit{$\varepsilon > 0$}
+
+\mq{$\exists \eta > 0, \forall x \in \R, \left(\vert x \vert < \eta\right) \Rightarrow \left(\vert \sin(x) \vert < \varepsilon \right)$}
+
+\onpose{$\eta = \varepsilon$}
+
+On a $\eta > 0$ par définition de $\varepsilon$.
+
+\mq{$\forall x \in \R, \left(\vert x \vert < \eta\right) \Rightarrow \left(\vert \sin(x) \vert < \varepsilon \right)$}
+
+\soit{$x \in \R$}
+
+\mq{$\left(\vert x \vert < \eta\right) \Rightarrow \left(\vert \sin(x) \vert < \varepsilon \right)$}
+
+\onsuppose{$\vert x \vert < \eta$}
+
+\mq{$\vert \sin(x) \vert < \varepsilon$}
+
+Par inégalité des accroissement finis appliqué à la fonction $\mathcal C^1$ sinus sur $[0,x]$ (ou $[x,0]$ suivant le signe de $x$), on a $\vert \sin(x) - \sin(0)\vert \leq 1 \times \vert x - 0\vert$ ou encore $\vert \sin(x) \vert \leq \vert x \vert$.
+
+Dès lors, comme $\vert x \vert < \eta$ et $\eta = \varepsilon$ on a $\vert \sin(x) \vert < \varepsilon$.
+
+\finsuppose{$\vert \sin(x) \vert < \varepsilon$}{$\vert x \vert < \eta$}
+Ainsi on a montré $\left(\vert x \vert < \eta\right) \Rightarrow \left(\vert \sin(x) \vert < \varepsilon \right)$
+
+\finsoit{$x$}
+Donc on a montré $\forall x \in \R, \left(\vert x \vert < \eta\right) \Rightarrow \left(\vert \sin(x) \vert < \varepsilon \right)$.
+
+\finpose{$\eta$}
+
+Donc on a montré $\exists \eta > 0, \forall x \in \R, \left(\vert x \vert < \eta\right) \Rightarrow \left(\vert \sin(x) \vert < \varepsilon \right)$.
+
+\finsoit{$\varepsilon$}
+Et finalement on a montré que la fonction $\sin$ est continue en $0$ (en utilisant qu'elle est de classe $\mathcal C^1$, mais là n'est pas la question).
+
+
+\pagebreak
+
+\section{Disjonction de cas}
+
+\subsection{Connexité des intervalles}
+Soient $a,b \in \R$ avec $a < b$
+\mq{l'intervalle $\Ifo a b$ est connexe}
+c'est-à-dire : 
+\mq{$\forall u, v \in \Ifo a b, \Iff u v \subseteq \Ifo a b$}
+
+\soit{$u, v \in \Ifo a b$}
+\mq{$\Iff u v \subseteq \Ifo a b$}
+\begin{disjonction}
+  \cas{$u > v$}
+  Dans ce cas $\Iff u v$ est vide et l'inclusion est automatique.
+  \fincas
+
+  \cas{$u \leq v$}
+  
+  \mq{$\forall x \in \Iff u v, x \in \Ifo a b$}
+  \soit{$x \in \Iff u v$}
+  \mq{$x \in \Ifo a b$}
+  On a $u \leq x \leq v$ par définition de $x$, et de plus
+  \begin{itemize}
+  \item comme $u \in \Ifo a b$, alors $a \leq u$, et ainsi $a \leq u \leq x$
+  \item et de même comme $v \in \Ifo a b$, alors $v <b$ et donc $x \leq v < b$.
+  \end{itemize}
+  En conclusion, par transitivité $a \leq x < b$ ce qui signifie que $x \in \Ifo a b$.
+  \finsoit{$x$}
+  On a donc montré que $\Iff u v \subseteq \Ifo a b$ dans ce cas.
+  \fincas
+\end{disjonction}
+L'inclusion étant vraie dans tous les cas, on a montré $\Iff u v \subseteq \Ifo a b$
+\finsoit{$u,v$}
+On a donc montré que $\Ifo a b$ est connexe.
+
+\pagebreak
+
+\subsection{Résolution d'une inéquation}
+
+Soit à résoudre $\vert x - 3 \vert \leq \vert 2x - 3 \vert$
+
+\subsubsection{Analyse}
+\soit{$x\in \R$ solution de l'inéquation}
+
+\begin{disjonction}[]%
+  \cas{$x - 3 < 0$}
+  Alors $\vert x - 3 \vert = - x + 3$.
+  \begin{disjonction}[Sous-cas]
+    \cas{$2x - 3 \geq 0$}
+    On a alors $\vert 2x - 3 \vert = 2x - 3$ et donc $x$ vérifie $3 - x \leq 2x - 3$ ou encore $3x \geq 6$ c'est-à-dire $x \geq 2$. Or on a supposé $x < 3$ donc $x \in \Ifo 2 3$.
+    \fincas
+
+    \cas{$2x - 3 < 0$}
+    On a alors $\vert 2x - 3 \vert = -2x + 3$ et donc $x$ vérifie $3 - x \leq 3 - 2x$ ou encore $x \leq 0$.
+    \fincas
+  \end{disjonction}
+  On peut donc avoir les sous-cas suivants :  $x \in \Ifo 2 3$ ou $x \leq 0$.
+  
+  \fincas
+  
+  \cas{$x - 3 \geq 0$}
+  Alors $\vert x - 3 \vert = x - 3$ et d'autre part $x \geq 3$ et donc $2x \geq 6$ ainsi $2x - 3 \geq 0$. On a donc $\vert 2x - 3 \vert = 2x - 3$. Il s'en suit donc que $x$ vérifie $x - 3 \leq 2x - 3$ ou encore $x \geq 0$. Ce qui est automatique sous notre hypothèse.
+  \fincas
+
+\end{disjonction}
+En conclusion on peut avoir les cas suivants : $x \leq 0$, $x \in \Ifo 2 3$ et $x \geq 3$.
+
+\finsoit{$x$} Ainsi toute solution de l'équation est dans $\Iof {-\infty} 0 \cup \Ifo 2 {+\infty}$.
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% End:

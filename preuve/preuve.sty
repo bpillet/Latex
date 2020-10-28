@@ -1,0 +1,77 @@
+%% Informations générales
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{preuve}
+
+%CARACTERES
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{ucs}
+
+%COULEURS PERSOS
+\RequirePackage{xcolor}
+
+\RequirePackage{framed}
+\RequirePackage{xifthen}%xparse
+
+\ProcessOptions\relax
+
+\def\couleursoit{\color{olive}}
+\def\couleurpose{\color{teal}}
+\def\couleursuppose{\color{purple}}
+\def\couleurmq{\color{blue}}
+\def\couleurabsurde{\color{brown}}
+\def\couleurcas{\color{violet}}
+
+\newcommand\soit[1]{\par\noindent\begingroup\couleursoit\underline{Soit {#1}}.%
+  \vspace*{-2ex}\begin{leftbar}\begingroup\color{black}%
+    \medskip}
+\newcommand\finsoit[1]{\endgroup\medskip\end{leftbar}\endgroup%
+\vspace*{-2ex}%
+\par\noindent\textcolor{olive}{Ce raisonnement est valable quel que soit {#1}.}}
+
+\newcommand\onpose[1]{\par\noindent\begingroup\couleurpose\underline{On pose {#1}}.%
+  \vspace*{-2ex}\begin{leftbar}\begingroup\color{black}%
+    \medskip}
+\newcommand\finpose[1]{\endgroup\medskip\end{leftbar}\endgroup%
+\vspace*{-2ex}%
+\par\noindent{\couleurpose On a vu que {#1} convient.}}
+
+\newcommand\onsuppose[1]{\par\noindent\begingroup\couleursuppose\underline{On suppose {#1}}.%
+  \vspace*{-2ex}\begin{leftbar}\begingroup\color{black}%
+    \medskip}
+\newcommand\finsuppose[2]{\endgroup\medskip\end{leftbar}\endgroup%
+\vspace*{-2ex}%
+\par\noindent{\couleursuppose On a montré {#1} sous l'hypothèse {#2}.}}
+
+\newcommand\absurde[1]{\par\noindent\begingroup\couleurabsurde\underline{On raisonne par l'absurde en supposant {#1}}.%
+  \vspace*{-2ex}\begin{leftbar}\begingroup\color{black}%
+    \medskip}
+\newcommand\contradiction[1]{\endgroup\medskip\end{leftbar}\endgroup%
+\vspace*{-2ex}%
+\par\noindent{\couleurabsurde On a aboutit a une contradiction, il était donc absurde de supposer {#1}.}}
+
+\newcounter{disjonctions}%
+\newcounter{cas}[disjonctions]%
+\def\nomcas{Cas}
+
+\newenvironment{disjonction}[1][]{%
+  \count0=\value{cas}%
+  \ifthenelse{\isempty{#1}}{}{\renewcommand\nomcas{#1}}%
+  \refstepcounter{disjonctions}%
+  \par Distinguons les cas~:
+  \par\medskip
+}{%
+  \addtocounter{disjonctions}{-1}%
+  \setcounter{cas}{\count0}
+}
+
+\newcommand\cas[1]{%
+  \refstepcounter{cas}%
+  \par\noindent\begingroup\couleurcas\underline{\nomcas~{\arabic{cas} :} {#1}}.%
+  \vspace*{-2ex}%
+  \begin{leftbar}\begingroup\color{black}%
+    \medskip}
+
+\newcommand\fincas{\endgroup\medskip\end{leftbar}\endgroup}
+
+\newcommand\mq[1]{\par\begingroup\couleurmq Montrons que {#1}.\endgroup\par\medskip}
