@@ -50,6 +50,10 @@
 \RequirePackage[ruled,vlined,french]{algorithm2e} % Permet d'écrire des algos.
 % UNITÉS  et FRACTIONS
 \RequirePackage{units}
+% ENCADREMENT
+\RequirePackage{mdframed}
+% Preuves
+\RequirePackage{/home/basile/Latex/preuve/preuve}
 
 % LINKS
 \RequirePackage{hyperref} % toujours le mettre en dernier !
@@ -193,6 +197,11 @@ citecolor = blue}
 
 \newcommand\ens[2]{\left\lbrace {#1} \; \left| \; {#2} \right. \right\rbrace } 
 % utilisation : \ens{(x,y) \in \R^2}{x^2 + y^2 = 1}
+\newcommand\ensp[2]{\left\lbrace {#1} \; : \; {#2} \right\rbrace } 
+
+\if@couleur
+  \newcommand\ensva[1]{{\color{DarkBlue}\left\lbrace \color{black} {#1} \color{DarkBlue}\right\rbrace}}
+\fi
 
 \newcommand\dessous[2]{\underset{{#1}}{\underbrace{{#2}}}}
 
@@ -549,28 +558,36 @@ citecolor = blue}
 \pagestyle{fancy}
 
 \rhead{\small p. \thepage /\pageref{LastPage}}
-\cfoot{}
 \chead{}
+\cfoot{\if@prof%
+   $\star$%
+   \fi}
 \lhead{\small \textsc{Tsi} 1 Lycée B. Franklin}
 
 \fancypagestyle{firststyle}{
    \rhead{\small p. \thepage /\pageref{LastPage}}
    \chead{}
-   \cfoot{}
+   \cfoot{\if@prof%
+     $\star$%
+     \fi}
    \renewcommand{\headrulewidth}{0}
    \lhead{\small \textsc{Tsi} 1 Lycée B. Franklin}}
 
 \fancypagestyle{firststyle2}{
    \rhead{\small p. \thepage /\pageref{LastPage}}
    \chead{}
-   \cfoot{}
+   \cfoot{\if@prof%
+     $\star$%
+     \fi}
    \renewcommand{\headrulewidth}{0}
    \lhead{\small \textsc{Tsi} 1 Benjam}}
 
 \fancypagestyle{firstcontrole}{
    \rhead{\small \textsc{Nom} Prénom}
    \chead{}
-   \cfoot{}
+   \cfoot{\if@prof%
+     $\star$%
+     \fi}
    \renewcommand{\headrulewidth}{0}
    \lhead{\small \textsc{Tsi} 1 Benjam}}
 
@@ -591,20 +608,20 @@ citecolor = blue}
    \newenvironment{demo}{\begingroup\color{white}\Large}{\endgroup}
    \newenvironment{elevide}{\begingroup\color{white}\Large}{\endgroup}
 \else
-   \specialcomment{correction}{\par{\bf\small correction :}\begingroup\small\color{DarkBrown}}{\endgroup}
    \specialcomment{elevide}{\begingroup\small\color{DarkBrown}}{\endgroup}
    \specialcomment{demo}{\begingroup\small\color{DarkBrown}}{\endgroup}
    \if@prof
-      \includecomment{correction}
+      \newenvironment{correction}{\par{\bf\small correction :}\begingroup\small\color{DarkBrown}}{\endgroup}
       \includecomment{demo}
       \includecomment{elevide}
    \else
+      \specialcomment{correction}{\par{\bf\small correction :}\begingroup\small\color{DarkBrown}}{\endgroup}
       \excludecomment{correction}
       \excludecomment{demo}
       \excludecomment{elevide}
    \fi
 \fi
-
+   
 \newcommand\facile{\faBicycle{}}
 \newcommand\moyen{\faPlane{}}
 \newcommand\dur{\faRocket{}}
