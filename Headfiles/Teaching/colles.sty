@@ -124,11 +124,13 @@ citecolor = blue}
 \newcommand\ssi{\; \textbf{ssi} \;} % ssi
 
 \DeclareMathOperator{\Vv}{| \! | \! |} % Norme subordonnée ||| A |||
+\newcommand\Nld[1]{\left\Vert {#1} \right\Vert} % Norme 2 : \Nld{f} = || f ||
 \newcommand\NLd[1]{\left\Vert {#1} \right\Vert_{L^2}} % Norme 2 : \NLd{f} = || f ||_2
 
 \DeclareMathOperator{\sh}{sh} % sinus hyperbolique
 
 \DeclareMathOperator{\Id}{Id} % Identité
+\DeclareMathOperator{\id}{id} % Identité
 
 % Interval d'entiers ou interprétation d'un terme en logique.
 \DeclareMathOperator{\llbracket}{[\![}
@@ -143,20 +145,61 @@ citecolor = blue}
 \newcommand\dessous[2]{\underset{{#1}}{\underbrace{{#2}}}}
 
 \DeclareMathOperator{\image}{Im} % Image
-\newcommand\End{\text{End}} % Endomorphismes
-\newcommand\Hom{\text{Hom}} % Hom-set
+\DeclareMathOperator\Vect{Vect}
+\DeclareMathOperator{\rg}{rg} % rang (fr)
+\DeclareMathOperator{\End}{End} % Endomorphismes
+\DeclareMathOperator{\Hom}{Hom} % Hom-set
 
 \newcommand\quot[1]{\Z/{#1}\Z} % \quot{n} = Z/nZ
 
-\newcommand\Card{\text{Card}} % Cardinal
+\DeclareMathOperator{\Card}{Card} % Cardinal
 
-\newcommand\Legendre[2]{\left(\dfrac{{#1}}{{#2}}\right)}  % Symbole de Legendre et Jacobi
-
-\DeclareMathOperator\Vect{Vect}
 
 % INDICATRICE
 %\newcommand\1[1]{\mathbf{1}_{\{#1\}}} % Fonction indicatrice
 \newcommand\carac[1]{\mathbf{1}_{#1}} % Fonction indicatrice 2
+
+\newcommand\ov[1]{\overrightarrow{{#1}}}
+
+\DeclareMathOperator{\iv}{\ov{\imath}}
+\DeclareMathOperator{\jv}{\ov{\jmath}}
+
+\renewcommand\v[2]{\begin{pmatrix}{#1} \\ {#2}\end{pmatrix}}
+
+\newcommand\vv[3]{\begin{pmatrix}{#1} \\ {#2} \\ {#3}\end{pmatrix}}
+
+\newcommand\fct[4]{\left(\begin{array}{rcl} {#1} & \longrightarrow & {#2} \\ {#3} & \mapsto & {#4}  \end{array}\right)}
+
+\DeclareMathOperator{\argsh}{argsh}
+\renewcommand{\tanh}{\operatorname{th}}
+
+\DeclareMathOperator{\Aarg}{arg}
+
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+\newcommand\Iff[2]{\left[{#1}, {#2}\right]}
+\newcommand\Iof[2]{\left]{#1}, {#2}\right]}
+\newcommand\Ifo[2]{\left[{#1}, {#2}\right[\:}
+\newcommand\Ioo[2]{\left]{#1}, {#2}\right[\:}
+
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Mat}{Mat}
+
+\newcommand{\po}[1]{\!\!\underset{{#1}}{\;{o}\!}}
+\newcommand{\gO}[1]{\!\!\underset{{#1}}{\;\Oo\!}}
+\newcommand{\simu}[1]{\underset{{#1}}{\sim}}
+
+\DeclareMathOperator\Var{\mathbb V}
+
+\newcommand\pc{\%{}}
+\newcommand\bayes{%
+\if@prof\else
+  \begin{center}
+     \fbox{{\small <\!}\,1\%}\quad \fbox{10\%}\quad \fbox{20\%}\quad \fbox{30\%}\quad \fbox{40\%}\quad \fbox{50\%}\quad \fbox{60\%}\quad \fbox{70\%}\quad \fbox{80\%}\quad \fbox{90\%}\quad \fbox{{\small >\!}\,99\%}
+     \end{center}
+\fi
+}
 
 %LABEL ITEMS
 \AtBeginDocument{%
