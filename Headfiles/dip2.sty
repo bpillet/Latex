@@ -237,7 +237,7 @@ citecolor = blue}
 
 \renewcommand\v[2]{\begin{pmatrix}{#1} \\ {#2}\end{pmatrix}}
 
-\newcommand\bv[2]{\begin{bmatrix}{#1} \\ {#2}\end{bmatrix}}
+\def\bv[2]{\begin{bmatrix}{#1} \\ {#2}\end{bmatrix}}
 
 \newcommand\vv[3]{\begin{pmatrix}{#1} \\ {#2} \\ {#3}\end{pmatrix}}
 
@@ -260,15 +260,13 @@ citecolor = blue}
 
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\tr}{tr}
 
 \newcommand{\po}[1]{\!\!\underset{{#1}}{\;{o}\!}}
 \newcommand{\gO}[1]{\!\!\underset{{#1}}{\;\Oo\!}}
 \newcommand{\simu}[1]{\underset{{#1}}{\sim}}
 
-
 \newcommand{\DL}[2]{développement limité à l'ordre {#1} en {#2}}
-
-\DeclareMathOperator{\Sp}{Sp}
 
 \DeclareMathOperator\Var{\mathbb V}
 
